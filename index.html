@@ -1596,143 +1596,97 @@
   }
 
   // ── Download result as JPG (canvas drawn) ──
-  async function downloadResult() {
+  function downloadResult() {
     const btn = document.getElementById('btn-download');
     btn.disabled = true;
     btn.textContent = '⏳ 產生中...';
-
     try {
-      const score = parseInt(document.getElementById('score-num').textContent);
+      const score  = parseInt(document.getElementById('score-num').textContent);
       const passed = score >= 80;
-      const correctN = document.getElementById('correct-count').textContent;
-      const wrongN = document.getElementById('wrong-count').textContent;
-      const dateStr = document.getElementById('snapshot-date').textContent;
+      const date   = document.getElementById('snapshot-date').textContent;
+      const passColor = passed ? '#2ecc71' : '#e74c3c';
+      const passText  = passed ? '✓ 通過' : '✗ 未通過';
 
-      const W = 800, H = 480;
-      const canvas = document.createElement('canvas');
-      canvas.width = W; canvas.height = H;
-      const ctx = canvas.getContext('2d');
+      const W = 760, H = 360;
+      const cv = document.createElement('canvas');
+      cv.width = W; cv.height = H;
+      const c = cv.getContext('2d');
 
-      // Background gradient
-      const bg = ctx.createLinearGradient(0, 0, W, H);
-      bg.addColorStop(0, '#021526');
-      bg.addColorStop(0.5, '#0a2a4a');
-      bg.addColorStop(1, '#021526');
-      ctx.fillStyle = bg;
-      ctx.fillRect(0, 0, W, H);
-
-      // Subtle radial glow
-      const glow = ctx.createRadialGradient(W*0.25, H*0.5, 0, W*0.25, H*0.5, W*0.55);
-      glow.addColorStop(0, 'rgba(33,150,184,0.12)');
-      glow.addColorStop(1, 'transparent');
-      ctx.fillStyle = glow;
-      ctx.fillRect(0, 0, W, H);
+      // Background
+      c.fillStyle = '#021a30';
+      c.fillRect(0, 0, W, H);
 
       // Border
-      ctx.strokeStyle = 'rgba(33,150,184,0.4)';
-      ctx.lineWidth = 1.5;
-      roundRect(ctx, 12, 12, W-24, H-24, 16);
-      ctx.stroke();
+      c.strokeStyle = '#2196b8';
+      c.lineWidth = 2;
+      c.strokeRect(14, 14, W-28, H-28);
 
-      // Top separator line
-      ctx.strokeStyle = 'rgba(33,150,184,0.25)';
-      ctx.lineWidth = 1;
-      ctx.beginPath(); ctx.moveTo(48, 80); ctx.lineTo(W-48, 80); ctx.stroke();
+      // Header divider
+      c.strokeStyle = 'rgba(33,150,184,0.4)';
+      c.lineWidth = 1;
+      c.beginPath(); c.moveTo(36, 80); c.lineTo(W-36, 80); c.stroke();
 
-      // Logo text
-      ctx.fillStyle = '#2196b8';
-      ctx.font = "bold 13px Microsoft JhengHei, sans-serif";
-      ctx.letterSpacing = '4px';
-      ctx.fillText('PURE DIVE 純潛水 · 初級水肺學科測試', 48, 54);
+      // Footer divider
+      c.beginPath(); c.moveTo(36, H-60); c.lineTo(W-36, H-60); c.stroke();
+
+      // Header title
+      c.fillStyle = '#2196b8';
+      c.font = 'bold 17px sans-serif';
+      c.textAlign = 'left';
+      c.fillText('SDI  初階潛水員學科測試', 36, 54);
 
       // Date
-      ctx.fillStyle = 'rgba(232,244,248,0.3)';
-      ctx.font = "12px Microsoft JhengHei, sans-serif";
-      ctx.textAlign = 'right';
-      ctx.fillText(dateStr, W-48, 54);
-      ctx.textAlign = 'left';
+      c.fillStyle = 'rgba(200,230,245,0.45)';
+      c.font = '13px sans-serif';
+      c.textAlign = 'right';
+      c.fillText(date, W-36, 54);
 
-      // Student name label
-      ctx.fillStyle = 'rgba(232,244,248,0.4)';
-      ctx.font = "13px Microsoft JhengHei, sans-serif";
-      ctx.fillText('學員', 48, 116);
+      // Meta row
+      c.textAlign = 'left';
+      c.fillStyle = 'rgba(200,230,245,0.5)';
+      c.font = '14px sans-serif';
+      c.fillText('總題數  40 題          滿分  100 分          及格  80 分', 36, 112);
+
+      // Name label
+      c.fillStyle = 'rgba(200,230,245,0.45)';
+      c.font = '13px sans-serif';
+      c.fillText('學員', 36, 152);
 
       // Student name
-      ctx.fillStyle = '#f4c542';
-      ctx.font = "bold 26px Microsoft JhengHei, sans-serif";
-      ctx.fillText(studentName, 48, 150);
+      c.fillStyle = '#f4c542';
+      c.font = 'bold 30px sans-serif';
+      c.fillText(studentName, 36, 192);
 
-      // Score big number
-      const scoreColor = passed ? '#2ecc71' : '#e74c3c';
-      ctx.fillStyle = scoreColor;
-      ctx.font = "bold 120px Microsoft JhengHei, sans-serif";
-      ctx.textAlign = 'right';
-      ctx.fillText(String(score), W-48, 210);
-      ctx.textAlign = 'left';
+      // Score
+      c.fillStyle = passColor;
+      c.font = 'bold 88px sans-serif';
+      c.textAlign = 'right';
+      c.fillText(String(score), W-36, 220);
 
       // /100
-      ctx.fillStyle = 'rgba(232,244,248,0.3)';
-      ctx.font = "14px Microsoft JhengHei, sans-serif";
-      ctx.textAlign = 'right';
-      ctx.fillText('/ 100 分', W-48, 230);
-      ctx.textAlign = 'left';
+      c.fillStyle = 'rgba(200,230,245,0.35)';
+      c.font = '15px sans-serif';
+      c.fillText('/ 100', W-36, 244);
 
-      // Pass badge pill
-      const badgeText = passed ? '✓  恭喜通過' : '✗  未達及格標準';
-      ctx.font = "bold 18px Microsoft JhengHei, sans-serif";
-      const bw = ctx.measureText(badgeText).width + 40;
-      const bx = 48, by = 170;
-      ctx.fillStyle = passed ? 'rgba(46,204,113,0.15)' : 'rgba(231,76,60,0.15)';
-      roundRect(ctx, bx, by, bw, 34, 17);
-      ctx.fill();
-      ctx.strokeStyle = scoreColor;
-      ctx.lineWidth = 1;
-      roundRect(ctx, bx, by, bw, 34, 17);
-      ctx.stroke();
-      ctx.fillStyle = scoreColor;
-      ctx.fillText(badgeText, bx+20, by+22);
+      // Pass label
+      c.fillStyle = passColor;
+      c.font = 'bold 22px sans-serif';
+      c.textAlign = 'left';
+      c.fillText(passText, 36, 248);
 
-      // Divider
-      ctx.strokeStyle = 'rgba(33,150,184,0.2)';
-      ctx.lineWidth = 1;
-      ctx.beginPath(); ctx.moveTo(48, 290); ctx.lineTo(W-48, 290); ctx.stroke();
 
-      // Stats row
-      const stats = [
-        { label: '答對', value: correctN, color: '#2ecc71' },
-        { label: '答錯', value: wrongN,   color: '#e74c3c' },
-        { label: '總題', value: '40',      color: '#f4c542' },
-      ];
-      stats.forEach((s, i) => {
-        const sx = 48 + i * 220;
-        ctx.fillStyle = s.color;
-        ctx.font = "bold 52px Microsoft JhengHei, sans-serif";
-        ctx.fillText(s.value, sx, 360);
-        ctx.fillStyle = 'rgba(232,244,248,0.5)';
-        ctx.font = "14px Microsoft JhengHei, sans-serif";
-        ctx.fillText(s.label, sx, 385);
-      });
-
-      // Footer
-      ctx.fillStyle = 'rgba(232,244,248,0.2)';
-      ctx.font = "12px Microsoft JhengHei, sans-serif";
-      ctx.textAlign = 'center';
-      ctx.fillText('PURE DIVE 純潛水  ·  pure-dive.com  ·  Keelung, Taiwan', W/2, H-28);
-      ctx.textAlign = 'left';
 
       // Download
-      const link = document.createElement('a');
-      const safeName = studentName.replace(/\s/g, '_') || 'result';
-      link.download = `純潛水學科測試_${safeName}.jpg`;
-      link.href = canvas.toDataURL('image/jpeg', 0.93);
-      link.click();
+      const a = document.createElement('a');
+      a.download = 'SDI_學科測試_' + (studentName || 'result') + '.jpg';
+      a.href = cv.toDataURL('image/jpeg', 0.95);
+      a.click();
 
     } catch(e) {
       alert('下載失敗：' + e.message);
     }
-
     btn.disabled = false;
-    btn.innerHTML = '⬇ 下載成績單 JPG';
+    btn.textContent = '⬇ 下載成績單 JPG';
   }
 
   function roundRect(ctx, x, y, w, h, r) {
