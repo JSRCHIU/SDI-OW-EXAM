@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>初級水肺潛水學科測試 — PURE DIVE</title>
+
+
+<style>
+  :root {
+    --ocean-deep: #021526;
+    --ocean-mid: #0a2a4a;
+    --ocean-light: #1a4a7a;
+    --surface: #2196b8;
+    --foam: #e8f4f8;
+    --coral: #ff6b47;
+    --sand: #f0e8d0;
+    --correct: #2ecc71;
+    --wrong: #e74c3c;
+    --text: #e8f4f8;
+    --gold: #f4c542;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Microsoft JhengHei', '微軟正黑體', sans-serif;
+    background: var(--ocean-deep);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Animated water background */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(33,150,184,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(10,42,74,0.4) 0%, transparent 50%),
+      linear-gradient(180deg, #021526 0%, #0a2a4a 40%, #021526 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .bubbles {
+    position: fixed;
+    bottom: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .bubble {
+    position: absolute;
+    bottom: -50px;
+    border-radius: 50%;
+    background: rgba(33,150,184,0.12);
+    border: 1px solid rgba(33,150,184,0.2);
+    animation: rise linear infinite;
+  }
+
+  @keyframes rise {
+    0% { transform: translateY(0) scale(1); opacity: 0.6; }
+    100% { transform: translateY(-110vh) scale(1.3); opacity: 0; }
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 60px 20px 40px;
+    border-bottom: 1px solid rgba(33,150,184,0.2);
+  }
+
+  .logo-tag {
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 6px;
+    color: var(--surface);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  h1 {
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 2px;
+    color: white;
+    margin-bottom: 8px;
+  }
+
+  h1 span {
+    color: var(--surface);
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: rgba(232,244,248,0.5);
+    letter-spacing: 3px;
+  }
+
+  .exam-meta {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 24px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: rgba(232,244,248,0.4);
+  }
+
+  .exam-meta span strong {
+    color: var(--gold);
+    font-size: 16px;
+  }
+
+  /* ── MAIN CONTENT ── */
+  main {
+    position: relative;
+    z-index: 10;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    margin-bottom: 48px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(33,150,184,0.25);
+  }
+
+  .section-icon {
+    width: 36px; height: 36px;
+    background: var(--ocean-light);
+    border: 1px solid var(--surface);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--surface);
+    text-transform: uppercase;
+  }
+
+  .section-score {
+    margin-left: auto;
+    font-size: 13px;
+    color: rgba(232,244,248,0.3);
+    letter-spacing: 1px;
+  }
+
+  /* ── QUESTION ── */
+  .question {
+    background: rgba(10,42,74,0.6);
+    border: 1px solid rgba(33,150,184,0.15);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    transition: border-color 0.3s;
+    backdrop-filter: blur(4px);
+  }
+
+  .question:hover {
+    border-color: rgba(33,150,184,0.3);
+  }
+
+  .question.answered-correct {
+    border-color: var(--correct);
+    background: rgba(46,204,113,0.07);
+  }
+
+  .question.answered-wrong {
+    border-color: var(--wrong);
+    background: rgba(231,76,60,0.07);
+  }
+
+  .question-text {
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 16px;
+    color: rgba(232,244,248,0.9);
+  }
+
+  .question-num {
+    font-weight: 700;
+    color: var(--surface);
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  /* ── RADIO / CHECKBOX OPTIONS ── */
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .option-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 6px;
+    border: 1px solid rgba(33,150,184,0.15);
+    background: rgba(2,21,38,0.4);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .option-label:hover {
+    border-color: rgba(33,150,184,0.4);
+    background: rgba(33,150,184,0.08);
+  }
+
+  .option-label input {
+    width: 16px; height: 16px;
+    accent-color: var(--surface);
+    flex-shrink: 0;
+  }
+
+  /* After submit */
+  .option-label.opt-correct {
+    border-color: var(--correct);
+    background: rgba(46,204,113,0.12);
+    color: var(--correct);
+  }
+
+  .option-label.opt-wrong {
+    border-color: var(--wrong);
+    background: rgba(231,76,60,0.1);
+    color: rgba(232,244,248,0.5);
+    text-decoration: line-through;
+  }
+
+  /* ── FILL-IN INPUTS ── */
+  .fill-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    font-size: 15px;
+    line-height: 2;
+    color: rgba(232,244,248,0.9);
+  }
+
+  .fill-in {
+    background: rgba(2,21,38,0.6);
+    border: 1px solid rgba(33,150,184,0.3);
+    border-radius: 4px;
+    color: var(--gold);
+    font-size: 17px;
+    font-weight: 600;
+    padding: 2px 10px;
+    width: 80px;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .fill-in:focus {
+    border-color: var(--surface);
+    box-shadow: 0 0 0 2px rgba(33,150,184,0.2);
+  }
+
+  .fill-in.fill-correct {
+    border-color: var(--correct);
+    color: var(--correct);
+    background: rgba(46,204,113,0.08);
+  }
+
+  .fill-in.fill-wrong {
+    border-color: var(--wrong);
+    color: var(--wrong);
+    background: rgba(231,76,60,0.08);
+  }
+
+  /* ── FEEDBACK ── */
+  .feedback {
+    display: none;
+    margin-top: 12px;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .feedback.fb-correct {
+    background: rgba(46,204,113,0.1);
+    border-left: 3px solid var(--correct);
+    color: rgba(232,244,248,0.8);
+    display: block;
+  }
+
+  .feedback.fb-wrong {
+    background: rgba(231,76,60,0.1);
+    border-left: 3px solid var(--wrong);
+    color: rgba(232,244,248,0.8);
+    display: block;
+  }
+
+  .feedback .answer-hint {
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  /* ── SUBMIT BUTTON ── */
+  .submit-area {
+    text-align: center;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .btn-submit {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 5px;
+    padding: 18px 64px;
+    background: linear-gradient(135deg, var(--surface), var(--ocean-light));
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 30px rgba(33,150,184,0.3);
+  }
+
+  .btn-submit::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+    border-radius: inherit;
+  }
+
+  .btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 40px rgba(33,150,184,0.5);
+  }
+
+  .btn-submit:active { transform: translateY(0); }
+
+  /* ── RESULT PANEL ── */
+  #result-panel {
+    display: none;
+    max-width: 860px;
+    margin: 0 auto 60px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .result-card {
+    background: rgba(10,42,74,0.8);
+    border: 1px solid rgba(33,150,184,0.3);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+  }
+
+  .score-display {
+    font-size: 100px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .score-display.pass { color: var(--correct); }
+  .score-display.fail { color: var(--wrong); }
+
+  .score-label {
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: rgba(232,244,248,0.4);
+    margin-bottom: 20px;
+  }
+
+  .pass-badge {
+    display: inline-block;
+    padding: 6px 24px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 3px;
+    margin-bottom: 24px;
+  }
+
+  .pass-badge.pass { background: rgba(46,204,113,0.15); border: 1px solid var(--correct); color: var(--correct); }
+  .pass-badge.fail { background: rgba(231,76,60,0.15); border: 1px solid var(--wrong); color: var(--wrong); }
+
+  .score-breakdown {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin: 24px 0;
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: rgba(232,244,248,0.6);
+  }
+
+  .score-breakdown span strong {
+    font-size: 22px;
+    display: block;
+  }
+
+  .score-breakdown .sc-correct strong { color: var(--correct); }
+  .score-breakdown .sc-wrong strong { color: var(--wrong); }
+  .score-breakdown .sc-total strong { color: var(--gold); }
+
+  /* ── WRONG ANSWERS REVIEW ── */
+  #wrong-review {
+    margin-top: 24px;
+    text-align: left;
+  }
+
+  .review-title {
+    font-size: 16px;
+    letter-spacing: 4px;
+    color: var(--wrong);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(231,76,60,0.2);
+  }
+
+  .review-item {
+    background: rgba(231,76,60,0.06);
+    border: 1px solid rgba(231,76,60,0.2);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .review-item .ri-q { color: rgba(232,244,248,0.7); margin-bottom: 6px; }
+  .review-item .ri-yours { color: var(--wrong); }
+  .review-item .ri-correct { color: var(--correct); font-weight: 700; }
+  .review-item .ri-explain { color: rgba(232,244,248,0.5); font-size: 13px; margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 6px; }
+
+  .btn-retry {
+    margin-top: 24px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    padding: 12px 40px;
+    background: transparent;
+    color: var(--surface);
+    border: 1px solid var(--surface);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .btn-retry:hover {
+    background: rgba(33,150,184,0.15);
+  }
+
+  /* ── MULTI SELECT NOTE ── */
+  .multi-note {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    background: rgba(244,197,66,0.08);
+    border: 1px solid rgba(244,197,66,0.2);
+    border-radius: 4px;
+    padding: 3px 8px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+
+  /* ── NAME SCREEN ── */
+  #name-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ocean-deep);
+    padding: 24px;
+  }
+
+  #name-screen::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 60%, rgba(33,150,184,0.18) 0%, transparent 55%),
+      radial-gradient(ellipse at 75% 25%, rgba(10,42,74,0.5) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .name-card {
+    position: relative;
+    background: rgba(10,42,74,0.85);
+    border: 1px solid rgba(33,150,184,0.35);
+    border-radius: 20px;
+    padding: 48px 40px 40px;
+    width: 100%;
+    max-width: 480px;
+    text-align: center;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  .name-dive-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    display: block;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .name-logo {
+    font-size: 12px;
+    letter-spacing: 6px;
+    color: var(--surface);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .name-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: white;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+
+  .name-subtitle {
+    font-size: 13px;
+    color: rgba(232,244,248,0.4);
+    letter-spacing: 2px;
+    margin-bottom: 36px;
+  }
+
+  .name-label {
+    display: block;
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: var(--surface);
+    text-align: left;
+    margin-bottom: 8px;
+  }
+
+  #student-name-input {
+    width: 100%;
+    background: rgba(2,21,38,0.7);
+    border: 1px solid rgba(33,150,184,0.4);
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    padding: 14px 18px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    margin-bottom: 24px;
+    text-align: center;
+    letter-spacing: 2px;
+  }
+
+  #student-name-input:focus {
+    border-color: var(--surface);
+    box-shadow: 0 0 0 3px rgba(33,150,184,0.2);
+  }
+
+  #student-name-input::placeholder {
+    color: rgba(232,244,248,0.2);
+    letter-spacing: 1px;
+  }
+
+  .btn-start {
+    width: 100%;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 5px;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--surface), var(--ocean-light));
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 24px rgba(33,150,184,0.35);
+  }
+
+  .btn-start:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(33,150,184,0.5); }
+  .btn-start:active { transform: translateY(0); }
+  .btn-start:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  /* ── STUDENT NAME DISPLAY ── */
+  .student-name-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 6px 18px;
+    background: rgba(33,150,184,0.1);
+    border: 1px solid rgba(33,150,184,0.25);
+    border-radius: 50px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: rgba(232,244,248,0.6);
+  }
+
+  .student-name-tag strong {
+    color: var(--gold);
+    font-size: 16px;
+  }
+
+  /* ── DOWNLOAD BUTTON ── */
+  .btn-download {
+    margin-top: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    padding: 12px 36px;
+    background: linear-gradient(135deg, #f4c542, #e8a020);
+    color: #021526;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 20px rgba(244,197,66,0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-download:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(244,197,66,0.45); }
+  .btn-download:active { transform: translateY(0); }
+  .btn-download:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+  /* ── RESULT CARD FOR SCREENSHOT ── */
+  #result-snapshot {
+    background: linear-gradient(160deg, #021526 0%, #0a2a4a 50%, #021526 100%);
+    border-radius: 20px;
+    padding: 36px;
+    margin-bottom: 0;
+  }
+
+  .snapshot-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(33,150,184,0.2);
+  }
+
+  .snapshot-logo {
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: var(--surface);
+    text-transform: uppercase;
+  }
+
+  .snapshot-date {
+    font-size: 12px;
+    color: rgba(232,244,248,0.3);
+    letter-spacing: 1px;
+  }
+
+  /* ── RWD — MOBILE ── */
+  @media (max-width: 600px) {
+    /* Global font scale ×1.5 */
+    body { font-size: 150%; }
+
+    header { padding: 40px 16px 28px; }
+    .logo-tag { font-size: 19.5px; letter-spacing: 4px; }
+    h1 { font-size: clamp(42px, 9vw, 64px); }
+    .subtitle { font-size: 21px; }
+
+    .exam-meta { flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .exam-meta span { font-size: 19.5px; }
+    .exam-meta span strong { font-size: 24px; }
+
+    main { padding: 24px 12px 60px; }
+
+    .section-title { font-size: 30px; }
+    .section-icon { width: 44px; height: 44px; font-size: 24px; }
+    .section-score { font-size: 19.5px; }
+
+    .question { padding: 16px 14px; margin-bottom: 14px; }
+    .question-num { font-size: 18px; }
+    .question-text { font-size: 22.5px; line-height: 1.75; margin-bottom: 14px; }
+
+    .option-label { font-size: 21px; padding: 12px 14px; gap: 10px; }
+    .option-label input { width: 22px; height: 22px; flex-shrink: 0; }
+
+    .fill-group { font-size: 22.5px; gap: 8px; }
+    .fill-in { font-size: 22px; width: 90px; padding: 4px 10px; }
+
+    .multi-note { font-size: 18px; }
+
+    .btn-submit { font-size: 24px; padding: 16px 40px; letter-spacing: 4px; }
+
+    .score-display { font-size: 88px; }
+    .score-label { font-size: 19.5px; }
+    .pass-badge { font-size: 22px; }
+    .score-breakdown { gap: 16px; flex-wrap: wrap; }
+    .score-breakdown span { font-size: 19.5px; }
+    .score-breakdown span strong { font-size: 30px; }
+
+    .review-title { font-size: 22px; }
+    .review-item { font-size: 19.5px; }
+    .review-item .ri-explain { font-size: 18px; }
+
+    .btn-retry, .btn-download { font-size: 21px; padding: 14px 32px; }
+
+    .name-card { padding: 36px 20px 28px; }
+    .name-title { font-size: 36px; }
+    .name-subtitle { font-size: 19.5px; }
+    .name-label { font-size: 19.5px; }
+    #student-name-input { font-size: 24px; padding: 14px 14px; }
+    .btn-start { font-size: 24px; }
+    .student-name-tag { font-size: 19.5px; }
+    .student-name-tag strong { font-size: 22px; }
+    .result-card { padding: 28px 16px; }
+    #result-snapshot { padding: 24px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Name screen -->
+<div id="name-screen">
+  <div class="name-card">
+    <span class="name-dive-icon">🤿</span>
+    <div class="name-title" style="font-size:28px;letter-spacing:4px;">SDI</div>
+    <div class="name-title" style="font-size:22px;letter-spacing:2px;margin-bottom:4px;">初階潛水員學科測試</div>
+    <p class="name-subtitle">OPEN WATER SCUBA DIVER EXAM</p>
+    <label class="name-label" for="student-name-input">▸ 學員姓名</label>
+    <input id="student-name-input" type="text" placeholder="請輸入您的姓名" autocomplete="off" id="student-name-input-field">
+    <button class="btn-start" id="btn-start" disabled>開始測驗 ▸</button>
+  </div>
+</div>
+
+<!-- Animated bubbles -->
+<div class="bubbles" id="bubbles"></div>
+
+<header style="padding:16px 20px;">
+  <div class="exam-meta" style="margin-top:0;">
+    <span>總題數 <strong>40</strong> 題</span>
+    <span>滿分 <strong>100</strong> 分</span>
+    <span>及格 <strong>80</strong> 分</span>
+  </div>
+  <div class="student-name-tag">學員：<strong id="display-name"></strong></div>
+</header>
+
+<main id="exam-form">
+
+  <!-- 1. 潛水物理 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🔬</div>
+      <span class="section-title">潛水物理</span>
+      <span class="section-score">5 題</span>
+    </div>
+
+    <!-- Q1 填空 -->
+    <div class="question" data-id="q1" data-type="fill" data-answers='["21","79"]'>
+      <span class="question-num">Q1 / 填空</span>
+      <div class="fill-group">
+        <span>空氣的組成中</span>
+        <input class="fill-in" data-idx="0" placeholder="??">
+        <span>% 是氧氣，</span>
+        <input class="fill-in" data-idx="1" placeholder="??">
+        <span>% 是氮氣。</span>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question" data-id="q2" data-type="single" data-answer="3">
+      <span class="question-num">Q2 / 單選</span>
+      <p class="question-text">那一種顏色在下潛過程中會最早消失？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q2" value="1">① 藍</label>
+        <label class="option-label"><input type="radio" name="q2" value="2">② 黃</label>
+        <label class="option-label"><input type="radio" name="q2" value="3">③ 紅</label>
+        <label class="option-label"><input type="radio" name="q2" value="4">④ 綠</label>
+      </div>
+    </div>
+
+    <!-- Q3 複選 -->
+    <div class="question" data-id="q3" data-type="multi" data-answer="1,2,3,4">
+      <span class="question-num">Q3 / 複選</span>
+      <div class="multi-note">▸ 複選題</div>
+      <p class="question-text">潮汐的形成主要是受了月球引力的影響，而下列那些節日通常是潮差較大的時候？</p>
+      <div class="options">
+        <label class="option-label"><input type="checkbox" name="q3" value="1">① 端午節</label>
+        <label class="option-label"><input type="checkbox" name="q3" value="2">② 中秋節</label>
+        <label class="option-label"><input type="checkbox" name="q3" value="3">③ 春節</label>
+        <label class="option-label"><input type="checkbox" name="q3" value="4">④ 元宵節</label>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="question" data-id="q4" data-type="single" data-answer="1">
+      <span class="question-num">Q4 / 單選</span>
+      <p class="question-text">海浪的形成主要是受了什麼的影響？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q4" value="1">① 風</label>
+        <label class="option-label"><input type="radio" name="q4" value="2">② 氣溫</label>
+        <label class="option-label"><input type="radio" name="q4" value="3">③ 引力</label>
+        <label class="option-label"><input type="radio" name="q4" value="4">④ 地球自轉</label>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="question" data-id="q5" data-type="single" data-answer="3">
+      <span class="question-num">Q5 / 單選</span>
+      <p class="question-text">在海水中 25 米處，潛水員身上所承受的環境壓力為？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q5" value="1">① 2 ATA</label>
+        <label class="option-label"><input type="radio" name="q5" value="2">② 2.5 Bar</label>
+        <label class="option-label"><input type="radio" name="q5" value="3">③ 3.5 ATA</label>
+        <label class="option-label"><input type="radio" name="q5" value="4">④ 25 kg/cm²</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 潛水生理 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🫁</div>
+      <span class="section-title">潛水生理</span>
+      <span class="section-score">5 題</span>
+    </div>
+
+    <!-- Q6 填空 -->
+    <div class="question" data-id="q6" data-type="fill" data-answers='["33","4","25"]'>
+      <span class="question-num">Q6 / 填空</span>
+      <div class="fill-group">
+        <span>在水中，視覺上放大了</span>
+        <input class="fill-in" data-idx="0" placeholder="??">
+        <span>%，聲音傳播速度快了</span>
+        <input class="fill-in" data-idx="1" placeholder="??">
+        <span>倍，熱的流失快了</span>
+        <input class="fill-in" data-idx="2" placeholder="??">
+        <span>倍。</span>
+      </div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="question" data-id="q7" data-type="single" data-answer="2">
+      <span class="question-num">Q7 / 單選</span>
+      <p class="question-text">隨著下潛深度越深，壓力越大，氮氣溶入身體的速率？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q7" value="1">① 不變</label>
+        <label class="option-label"><input type="radio" name="q7" value="2">② 越快</label>
+        <label class="option-label"><input type="radio" name="q7" value="3">③ 越慢</label>
+        <label class="option-label"><input type="radio" name="q7" value="4">④ 因人而異</label>
+      </div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="question" data-id="q8" data-type="single" data-answer="3">
+      <span class="question-num">Q8 / 單選</span>
+      <p class="question-text">因壓力而造成的擠壓，往往造成耳膜不適，因此我們需要在何時開始做耳壓平衡的動作？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q8" value="1">① 水下一米</label>
+        <label class="option-label"><input type="radio" name="q8" value="2">② 耳朵痛時</label>
+        <label class="option-label"><input type="radio" name="q8" value="3">③ 開始下潛時</label>
+        <label class="option-label"><input type="radio" name="q8" value="4">④ 上升時</label>
+      </div>
+    </div>
+
+    <!-- Q9 複選 -->
+    <div class="question" data-id="q9" data-type="multi" data-answer="1,2,3,4">
+      <span class="question-num">Q9 / 複選</span>
+      <div class="multi-note">▸ 複選題</div>
+      <p class="question-text">潛水完，因為身體內有殘氮，為了安全應儘量避免？</p>
+      <div class="options">
+        <label class="option-label"><input type="checkbox" name="q9" value="1">① 抽煙</label>
+        <label class="option-label"><input type="checkbox" name="q9" value="2">② 喝酒</label>
+        <label class="option-label"><input type="checkbox" name="q9" value="3">③ 泡溫泉</label>
+        <label class="option-label"><input type="checkbox" name="q9" value="4">④ 搭飛機</label>
+      </div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="question" data-id="q10" data-type="single" data-answer="4">
+      <span class="question-num">Q10 / 單選</span>
+      <p class="question-text">潛水後多久可以搭飛機？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q10" value="1">① 3 小時</label>
+        <label class="option-label"><input type="radio" name="q10" value="2">② 6 小時</label>
+        <label class="option-label"><input type="radio" name="q10" value="3">③ 12 小時</label>
+        <label class="option-label"><input type="radio" name="q10" value="4">④ 依潛水電腦錶指示</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. 潛水醫學 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🏥</div>
+      <span class="section-title">潛水醫學</span>
+      <span class="section-score">5 題</span>
+    </div>
+
+    <!-- Q11 -->
+    <div class="question" data-id="q11" data-type="single" data-answer="4">
+      <span class="question-num">Q11 / 單選</span>
+      <p class="question-text">感冒時不建議潛水是因為？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q11" value="1">① 耳壓不易平衡</label>
+        <label class="option-label"><input type="radio" name="q11" value="2">② 鼻竇不易平衡</label>
+        <label class="option-label"><input type="radio" name="q11" value="3">③ 額竇不易平衡</label>
+        <label class="option-label"><input type="radio" name="q11" value="4">④ 以上皆是</label>
+      </div>
+    </div>
+
+    <!-- Q12 -->
+    <div class="question" data-id="q12" data-type="single" data-answer="4">
+      <span class="question-num">Q12 / 單選</span>
+      <p class="question-text">下列何者「不是」造成暈眩之形成原因？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q12" value="1">① 海浪</label>
+        <label class="option-label"><input type="radio" name="q12" value="2">② 耳壓不平衡</label>
+        <label class="option-label"><input type="radio" name="q12" value="3">③ 冷水進入中耳</label>
+        <label class="option-label"><input type="radio" name="q12" value="4">④ 潛太深</label>
+      </div>
+    </div>
+
+    <!-- Q13 -->
+    <div class="question" data-id="q13" data-type="single" data-answer="3">
+      <span class="question-num">Q13 / 單選</span>
+      <p class="question-text">下列何者為提高減壓症風險之因素？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q13" value="1">① 充足睡眠</label>
+        <label class="option-label"><input type="radio" name="q13" value="2">② 較長的水面休息時間</label>
+        <label class="option-label"><input type="radio" name="q13" value="3">③ 抽煙喝酒</label>
+        <label class="option-label"><input type="radio" name="q13" value="4">④ 多喝水</label>
+      </div>
+    </div>
+
+    <!-- Q14 -->
+    <div class="question" data-id="q14" data-type="single" data-answer="4">
+      <span class="question-num">Q14 / 單選</span>
+      <p class="question-text">如何能減少殘氮對身體的影響？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q14" value="1">① 不要在深處停留太久</label>
+        <label class="option-label"><input type="radio" name="q14" value="2">② 較長的水面休息時間</label>
+        <label class="option-label"><input type="radio" name="q14" value="3">③ 使用高氧潛水</label>
+        <label class="option-label"><input type="radio" name="q14" value="4">④ 以上皆是</label>
+      </div>
+    </div>
+
+    <!-- Q15 -->
+    <div class="question" data-id="q15" data-type="single" data-answer="1">
+      <span class="question-num">Q15 / 單選</span>
+      <p class="question-text">OW 的潛水深度限制在 18 米，但經過深潛課程訓練後的建議深度仍為 30 米，主要是考量？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q15" value="1">① 氮醉</label>
+        <label class="option-label"><input type="radio" name="q15" value="2">② 氧中毒</label>
+        <label class="option-label"><input type="radio" name="q15" value="3">③ 水溫</label>
+        <label class="option-label"><input type="radio" name="q15" value="4">④ 耗氣量</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 水肺技巧 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🤿</div>
+      <span class="section-title">水肺技巧</span>
+      <span class="section-score">5 題</span>
+    </div>
+
+    <div class="question" data-id="q16" data-type="single" data-answer="3">
+      <span class="question-num">Q16 / 單選</span>
+      <p class="question-text">使用調節器時應採用何種呼吸方式？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q16" value="1">① 短猝呼吸</label>
+        <label class="option-label"><input type="radio" name="q16" value="2">② 大口呼吸</label>
+        <label class="option-label"><input type="radio" name="q16" value="3">③ 深吸慢吐</label>
+        <label class="option-label"><input type="radio" name="q16" value="4">④ 淺吸暴吐</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q17" data-type="single" data-answer="2">
+      <span class="question-num">Q17 / 單選</span>
+      <p class="question-text">為防止面鏡擠壓，下列何者為正確方式？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q17" value="1">① 將面鏡帶束緊</label>
+        <label class="option-label"><input type="radio" name="q17" value="2">② 用鼻子微向面鏡內吐氣</label>
+        <label class="option-label"><input type="radio" name="q17" value="3">③ 將面鏡帶放鬆</label>
+        <label class="option-label"><input type="radio" name="q17" value="4">④ 選用質地軟的面鏡</label>
+      </div>
+    </div>
+
+    <!-- Q18 填空 -->
+    <div class="question" data-id="q18" data-type="fill" data-answers='["充","洩"]'>
+      <span class="question-num">Q18 / 填空</span>
+      <div class="fill-group">
+        <span>下潛的過程中 BC 應適量的</span>
+        <input class="fill-in" data-idx="0" placeholder="?" style="width:50px">
+        <span>氣，反之上升時則應</span>
+        <input class="fill-in" data-idx="1" placeholder="?" style="width:50px">
+        <span>氣。</span>
+      </div>
+    </div>
+
+    <div class="question" data-id="q19" data-type="single" data-answer="4">
+      <span class="question-num">Q19 / 單選</span>
+      <p class="question-text">為保護潛水員也保護海洋環境，應有何項良好的技能？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q19" value="1">① 蛙鞋踢法</label>
+        <label class="option-label"><input type="radio" name="q19" value="2">② 有控制的上升</label>
+        <label class="option-label"><input type="radio" name="q19" value="3">③ 導航</label>
+        <label class="option-label"><input type="radio" name="q19" value="4">④ 中性浮力</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q20" data-type="single" data-answer="1">
+      <span class="question-num">Q20 / 單選</span>
+      <p class="question-text">下列何者為危險的行為，必須完全禁止？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q20" value="1">① 閉氣上升</label>
+        <label class="option-label"><input type="radio" name="q20" value="2">② 倒立</label>
+        <label class="option-label"><input type="radio" name="q20" value="3">③ 快速下潛</label>
+        <label class="option-label"><input type="radio" name="q20" value="4">④ 將二級頭離開嘴邊</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. 潛水裝備 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">⚙️</div>
+      <span class="section-title">潛水裝備</span>
+      <span class="section-score">5 題</span>
+    </div>
+
+    <div class="question" data-id="q21" data-type="single" data-answer="4">
+      <span class="question-num">Q21 / 單選</span>
+      <p class="question-text">調節器的選擇應考量？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q21" value="1">① 價格</label>
+        <label class="option-label"><input type="radio" name="q21" value="2">② 美觀</label>
+        <label class="option-label"><input type="radio" name="q21" value="3">③ 品牌</label>
+        <label class="option-label"><input type="radio" name="q21" value="4">④ 供氣穩定呼吸阻抗低</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q22" data-type="single" data-answer="4">
+      <span class="question-num">Q22 / 單選</span>
+      <p class="question-text">潛水裝備的保養周期為？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q22" value="1">① 100 次</label>
+        <label class="option-label"><input type="radio" name="q22" value="2">② 二年</label>
+        <label class="option-label"><input type="radio" name="q22" value="3">③ 一年</label>
+        <label class="option-label"><input type="radio" name="q22" value="4">④ 依製造商建議</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q23" data-type="single" data-answer="1">
+      <span class="question-num">Q23 / 單選</span>
+      <p class="question-text">潛水裝備的收藏應放置於？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q23" value="1">① 通風陰涼</label>
+        <label class="option-label"><input type="radio" name="q23" value="2">② 陽光曝曬</label>
+        <label class="option-label"><input type="radio" name="q23" value="3">③ 後車箱內</label>
+        <label class="option-label"><input type="radio" name="q23" value="4">④ 防潮箱內</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q24" data-type="single" data-answer="3">
+      <span class="question-num">Q24 / 單選</span>
+      <p class="question-text">為控制體內氮殘壓不會過高，重覆潛水必須一定要使用？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q24" value="1">① 浮力袋</label>
+        <label class="option-label"><input type="radio" name="q24" value="2">② 深度計</label>
+        <label class="option-label"><input type="radio" name="q24" value="3">③ 潛水電腦錶</label>
+        <label class="option-label"><input type="radio" name="q24" value="4">④ 手電筒</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q25" data-type="single" data-answer="1">
+      <span class="question-num">Q25 / 單選</span>
+      <p class="question-text">出水後面鏡拿下，下列何者「是」應放置的位置？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q25" value="1">① BCD 口袋</label>
+        <label class="option-label"><input type="radio" name="q25" value="2">② 蛙鞋</label>
+        <label class="option-label"><input type="radio" name="q25" value="3">③ 頭頂</label>
+        <label class="option-label"><input type="radio" name="q25" value="4">④ 脖子</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. 潛水計劃 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🗺️</div>
+      <span class="section-title">潛水計劃</span>
+      <span class="section-score">5 題</span>
+    </div>
+
+    <!-- Q26 填空 -->
+    <div class="question" data-id="q26" data-type="fill" data-answers='["A"]'>
+      <span class="question-num">Q26 / 填空</span>
+      <div class="fill-group">
+        <span>潛點 A：深度 18 米，潛點 B：深度 11 米。第一潛應以安排哪個為先？</span>
+        <input class="fill-in" data-idx="0" placeholder="?" style="width:50px">
+      </div>
+    </div>
+
+    <!-- Q27 -->
+    <div class="question" data-id="q27" data-type="single" data-answer="3">
+      <span class="question-num">Q27 / 單選</span>
+      <p class="question-text">潛伴遺失時，下列何者為「非」？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q27" value="1">① 原地搜尋一分鐘</label>
+        <label class="option-label"><input type="radio" name="q27" value="2">② 發出聲音或燈光訊號</label>
+        <label class="option-label"><input type="radio" name="q27" value="3">③ 依一分鐘不超過 9 米速度上升，並在五米做好安全停留後回到水面</label>
+        <label class="option-label"><input type="radio" name="q27" value="4">④ 水面等待三分鐘後，若無尋回再由水面回到岸邊</label>
+      </div>
+    </div>
+
+    <!-- Q28 填空 -->
+    <div class="question" data-id="q28" data-type="fill" data-answers='["100"]'>
+      <span class="question-num">Q28 / 填空</span>
+      <div class="fill-group">
+        <span>若無特別約定，當殘壓為</span>
+        <input class="fill-in" data-idx="0" placeholder="??">
+        <span>Bar 時，應立即通知導潛準備返航。</span>
+      </div>
+    </div>
+
+    <!-- Q29 -->
+    <div class="question" data-id="q29" data-type="single" data-answer="2">
+      <span class="question-num">Q29 / 單選</span>
+      <p class="question-text">正確的潛伴分配應為？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q29" value="1">① 男生女生配</label>
+        <label class="option-label"><input type="radio" name="q29" value="2">② 資深資淺配</label>
+        <label class="option-label"><input type="radio" name="q29" value="3">③ 同學配</label>
+        <label class="option-label"><input type="radio" name="q29" value="4">④ 老少配</label>
+      </div>
+    </div>
+
+    <!-- Q30 填空 -->
+    <div class="question" data-id="q30" data-type="fill" data-answers='["25"]'>
+      <span class="question-num">Q30 / 填空</span>
+      <div class="fill-group">
+        <span>SDI 的進階水肺潛水員應具有</span>
+        <input class="fill-in" data-idx="0" placeholder="??">
+        <span>次以上的潛水經驗。</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. 緊急處理 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🚨</div>
+      <span class="section-title">緊急處理</span>
+      <span class="section-score">5 題</span>
+    </div>
+
+    <div class="question" data-id="q31" data-type="single" data-answer="3">
+      <span class="question-num">Q31 / 單選</span>
+      <p class="question-text">如不慎被獅子魚刺傷應如何處置？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q31" value="1">① 沖尿</label>
+        <label class="option-label"><input type="radio" name="q31" value="2">② 泡醋</label>
+        <label class="option-label"><input type="radio" name="q31" value="3">③ 泡熱水</label>
+        <label class="option-label"><input type="radio" name="q31" value="4">④ 泡淡水</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q32" data-type="single" data-answer="3">
+      <span class="question-num">Q32 / 單選</span>
+      <p class="question-text">如不慎被水母螫傷應如何處置？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q32" value="1">① 沖尿</label>
+        <label class="option-label"><input type="radio" name="q32" value="2">② 泡醋</label>
+        <label class="option-label"><input type="radio" name="q32" value="3">③ 泡熱水</label>
+        <label class="option-label"><input type="radio" name="q32" value="4">④ 泡淡水</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q33" data-type="single" data-answer="3">
+      <span class="question-num">Q33 / 單選</span>
+      <p class="question-text">為預防潛水抽筋，何者為「非」？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q33" value="1">① 吃香蕉</label>
+        <label class="option-label"><input type="radio" name="q33" value="2">② 多喝水</label>
+        <label class="option-label"><input type="radio" name="q33" value="3">③ 選擇較重的蛙鞋</label>
+        <label class="option-label"><input type="radio" name="q33" value="4">④ 下水前先暖身</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q34" data-type="single" data-answer="1">
+      <span class="question-num">Q34 / 單選</span>
+      <p class="question-text">當氣源發生故障時，應第一優先？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q34" value="1">① 尋找潛伴</label>
+        <label class="option-label"><input type="radio" name="q34" value="2">② 尋找教練</label>
+        <label class="option-label"><input type="radio" name="q34" value="3">③ 緊急上升</label>
+        <label class="option-label"><input type="radio" name="q34" value="4">④ 卸除配重</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q35" data-type="single" data-answer="1">
+      <span class="question-num">Q35 / 單選</span>
+      <p class="question-text">若潛水過程意外嗆水不適，應？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q35" value="1">① 捏住鼻子保持用嘴呼吸</label>
+        <label class="option-label"><input type="radio" name="q35" value="2">② 脫掉面鏡</label>
+        <label class="option-label"><input type="radio" name="q35" value="3">③ 閉氣快速回到水面</label>
+        <label class="option-label"><input type="radio" name="q35" value="4">④ 壓住排水鈕</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. 減壓理論 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">📊</div>
+      <span class="section-title">減壓理論</span>
+      <span class="section-score">5 題</span>
+    </div>
+
+    <!-- Q36 填空 -->
+    <div class="question" data-id="q36" data-type="fill" data-answers='["10"]'>
+      <span class="question-num">Q36 / 填空</span>
+      <div class="fill-group">
+        <span>使用一般空氣時，在深度</span>
+        <input class="fill-in" data-idx="0" placeholder="??">
+        <span>米以內的潛水，可以不用考慮減壓問題待多久都可以直接回到水面。</span>
+      </div>
+    </div>
+
+    <!-- Q37 填空 -->
+    <div class="question" data-id="q37" data-type="fill" data-answers='["1.185"]'>
+      <span class="question-num">Q37 / 填空</span>
+      <div class="fill-group">
+        <span>水深五米處，呼吸空氣之氮分壓為</span>
+        <input class="fill-in" data-idx="0" placeholder="???" style="width:90px">
+        <span>Bar。（提示：1.5 × 0.79）</span>
+      </div>
+    </div>
+
+    <!-- Q38 -->
+    <div class="question" data-id="q38" data-type="single" data-answer="3">
+      <span class="question-num">Q38 / 單選</span>
+      <p class="question-text">執行免減壓潛水（NDL）的必要工具為？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q38" value="1">① NOAA 免減壓空氣潛水計劃表</label>
+        <label class="option-label"><input type="radio" name="q38" value="2">② 深度計和計時潛水錶</label>
+        <label class="option-label"><input type="radio" name="q38" value="3">③ 潛水電腦錶</label>
+        <label class="option-label"><input type="radio" name="q38" value="4">④ 以上皆是</label>
+      </div>
+    </div>
+
+    <!-- Q39 -->
+    <div class="question" data-id="q39" data-type="single" data-answer="4">
+      <span class="question-num">Q39 / 單選</span>
+      <p class="question-text">SDI 建議上升速率應保持在每分鐘 9 米以下，下列何者是最有效控制上升速度的方法？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q39" value="1">① 觀察最微小氣泡的上升速度</label>
+        <label class="option-label"><input type="radio" name="q39" value="2">② 深度計和計時潛水錶</label>
+        <label class="option-label"><input type="radio" name="q39" value="3">③ 觀察潛伴</label>
+        <label class="option-label"><input type="radio" name="q39" value="4">④ 潛水電腦錶</label>
+      </div>
+    </div>
+
+    <!-- Q40 -->
+    <div class="question" data-id="q40" data-type="single" data-answer="3">
+      <span class="question-num">Q40 / 單選</span>
+      <p class="question-text">如不慎超出了免減壓時間的限制，應如何處置？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q40" value="1">① 停止潛水立即回到水面</label>
+        <label class="option-label"><input type="radio" name="q40" value="2">② 無需理會</label>
+        <label class="option-label"><input type="radio" name="q40" value="3">③ 依電腦錶指示在指定深度停留一定時間</label>
+        <label class="option-label"><input type="radio" name="q40" value="4">④ 回到岸上吸純氧，再送醫</label>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="submit-area">
+  <button class="btn-submit" id="btn-submit">▸ 送出測驗</button>
+</div>
+
+<div id="result-panel">
+  <div class="result-card">
+    <div id="result-snapshot">
+      <div class="snapshot-header">
+        <span class="snapshot-logo">PURE DIVE · 初級水肺學科測試</span>
+        <span class="snapshot-date" id="snapshot-date"></span>
+      </div>
+      <div style="font-size:14px;letter-spacing:3px;color:rgba(232,244,248,0.4);margin-bottom:4px;">學員</div>
+      <div style="font-size:22px;color:var(--gold);margin-bottom:20px;letter-spacing:2px;" id="result-name"></div>
+      <div class="score-display" id="score-num">--</div>
+      <div class="score-label">/ 100 分</div>
+      <div class="pass-badge" id="pass-badge">--</div>
+      <div class="score-breakdown">
+        <div class="sc-correct">
+          <strong id="correct-count">0</strong>答對題數
+        </div>
+        <div class="sc-wrong">
+          <strong id="wrong-count">0</strong>答錯題數
+        </div>
+        <div class="sc-total">
+          <strong>40</strong>總題數
+        </div>
+      </div>
+    </div>
+    <div id="wrong-review"></div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px;">
+      <button class="btn-download" id="btn-download">⬇ 下載成績單 JPG</button>
+      <button class="btn-retry">↺ 重新作答</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── Event listeners (no inline handlers) ──
+  document.addEventListener('DOMContentLoaded', function() {
+    const nameInput = document.getElementById('student-name-input');
+    const startBtn  = document.getElementById('btn-start');
+    const submitBtn = document.getElementById('btn-submit');
+    const dlBtn     = document.getElementById('btn-download');
+    const retryBtn  = document.querySelector('.btn-retry');
+
+    nameInput.addEventListener('input', function() {
+      startBtn.disabled = nameInput.value.trim().length === 0;
+    });
+    nameInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') startExam();
+    });
+    startBtn.addEventListener('click', startExam);
+    submitBtn.addEventListener('click', submitExam);
+    dlBtn.addEventListener('click', downloadResult);
+    retryBtn.addEventListener('click', retryExam);
+  });
+
+  // ── Bubbles animation ──
+  const bubblesEl = document.getElementById('bubbles');
+  for (let i = 0; i < 18; i++) {
+    const b = document.createElement('div');
+    b.className = 'bubble';
+    const size = 8 + Math.random() * 24;
+    b.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%;
+      animation-duration:${8 + Math.random()*14}s;
+      animation-delay:${Math.random()*10}s;
+    `;
+    bubblesEl.appendChild(b);
+  }
+
+  // ── Name screen ──
+  let studentName = '';
+
+  function checkName() {
+    const val = document.getElementById('student-name-input').value.trim();
+    document.getElementById('btn-start').disabled = val.length === 0;
+  }
+
+  function startExam() {
+    const val = document.getElementById('student-name-input').value.trim();
+    if (!val) return;
+    studentName = val;
+    document.getElementById('display-name').textContent = val;
+    document.getElementById('name-screen').style.opacity = '0';
+    document.getElementById('name-screen').style.transition = 'opacity 0.5s';
+    setTimeout(() => {
+      document.getElementById('name-screen').style.display = 'none';
+    }, 500);
+  }
+
+  // ── Answer explanations ──
+  const explanations = {
+    q1: '空氣組成：氧氣約 21%，氮氣約 79%，其餘為微量氣體。',
+    q2: '紅色光波長最長，穿透水的能力最弱，因此在下潛時最先消失。',
+    q3: '農曆初一、十五（朔望月）時潮差最大，端午節（五月初五）、中秋節（八月十五）、春節（正月初一）、元宵節（正月十五）皆符合。',
+    q4: '海浪主要由風所形成，風對海面施力產生波浪。',
+    q5: '25米海水中，環境壓力 = 1 ATA（大氣壓）+ 2.5 ATA（水壓）= 3.5 ATA。',
+    q6: '水的特性：視覺放大約 33%；聲音傳播速度約為空氣的 4 倍；熱傳導係數約為空氣的 25 倍。',
+    q7: '依亨利定律，壓力越大，氣體溶入液體的量越多，速率也越快。',
+    q8: '應於開始下潛時即開始做耳壓平衡，在壓力變化之初就預防，等耳朵痛才做已太晚。',
+    q9: '殘氮在體內時，抽煙（一氧化碳）、喝酒（血管擴張）、泡溫泉（加速氣泡形成）、搭飛機（氣壓降低）皆會提高減壓症風險。',
+    q10: '潛次不同、氮氣殘留量各異，最安全的方式是依潛水電腦錶顯示的無飛行時間為準。固定的小時數僅是最低限，電腦錶能依實際潛水深度與時間給出個人化建議。',
+    q11: '感冒導致鼻腔、鼻竇、額竇皆充血腫脹，耳壓平衡困難，以上皆是原因。',
+    q12: '暈眩原因包括耳壓不平衡、冷水進入中耳（熱量不平衡刺激前庭）、海浪等；「潛太深」本身不直接造成暈眩。',
+    q13: '抽煙喝酒會影響血液循環、增加血液黏稠度，提高減壓症風險；充足睡眠、多喝水、足夠休息是降低風險的方法。',
+    q14: '三個選項皆可減少殘氮影響：不要在深處停留太久可減少吸氮量、足夠水面休息可讓氮氣排出、高氧可降低氮氣比例。',
+    q15: '30 米以深氮氣分壓超過 3 Bar 時，氮醉效應明顯，因此即便已取得深潛資格，建議深度仍為 30 米。',
+    q16: '深吸慢吐可充分換氣、維持穩定呼吸，減少 CO₂ 累積，是水肺潛水的標準呼吸法。',
+    q17: '面鏡擠壓是因內外壓差，下潛時用鼻子微量吐氣入面鏡可平衡壓力。',
+    q18: '下潛時需充氣以增加浮力抵抗下沉；上升時需洩氣以避免過度上升失控。',
+    q19: '中性浮力能讓潛水員在水中穩定懸浮，不碰觸珊瑚礁，是最重要的保護技能。',
+    q20: '閉氣上升是最危險的行為，上升過程中氣體膨脹可能導致肺過度擴張傷（AGE），必須完全禁止。',
+    q21: '調節器是維生設備，供氣是否穩定、呼吸阻抗是否低才是最重要的選擇依據。',
+    q22: '保養周期應以製造商建議為準，不同品牌零件壽命不同，無法統一規定次數或年限。',
+    q23: '通風陰涼處可防止橡膠老化、金屬腐蝕。防潮箱反而可能造成橡膠件加速老化。',
+    q24: '潛水電腦錶會持續計算體內累積氮量，是重覆潛水管理殘氮的必備工具。',
+    q25: '出水後面鏡應放入 BCD 口袋（安全收納）。頭頂雖然常見，但容易掉落或受損；蛙鞋和脖子都是錯誤位置。',
+    q26: '依潛水計劃原則：先深後淺，先在最深點潛（18 米的 A），後到較淺處（11 米的 B）。',
+    q27: '「依一分鐘不超過9米速度上升，並在五米做安全停留後回水面」這個描述有誤——正確的潛伴遺失程序是在原深度搜尋一分鐘，若未找到再依正常上升速率（不是緊急上升）回到水面等待。',
+    q28: '100 Bar 是通用的「預留返航殘壓」，也稱為安全殘壓底線。',
+    q29: '資深與資淺搭配可讓有經驗者協助新手，是最安全有效的潛伴分配方式。',
+    q30: 'SDI 規定進階開放水域潛水員課程需有 25 次潛水紀錄。',
+    q31: '獅子魚的毒素為蛋白質性毒素，遇熱會分解失活，因此泡熱水（約 43-45°C）是正確處置方式。',
+    q32: '水母毒素為蛋白質，泡 40~45°C 熱水可使毒素變性失活，是目前最安全的通用處置。醋僅適用於特定種類（如箱型水母），台灣常見的僧帽水母用醋反而會促使毒素二次釋放，因此不建議作為通用急救方式。',
+    q33: '較重的蛙鞋反而增加腿部負擔，更容易造成抽筋。預防抽筋應補充電解質（吃香蕉）、保持水分和充分暖身。',
+    q34: '氣源故障時第一優先是尋找潛伴，共用潛伴的備用氣源（章魚頭）後共同上升。',
+    q35: '嗆水時應捏住鼻子改以嘴呼吸，防止水繼續進入。切忌閉氣上升（危險）或脫掉面鏡。',
+    q36: '10 米處壓力為 2 ATA，2 × 1.58 = 3.16 ATA > 環境壓力 2 ATA 的任何深度皆安全，因此 10 米以內不需考慮減壓停留。',
+    q37: '5 米處壓力 = 1.5 ATA，氮氣佔 79%，故氮分壓 = 1.5 × 0.79 = 1.185 Bar。',
+    q38: '潛水電腦錶是執行免減壓潛水最直接的必要工具，能即時計算 NDL 剩餘時間及深度，是現代潛水的標準配備。',
+    q39: '潛水電腦錶內建演算法可即時顯示上升速率，是最精確、最即時的控速工具。',
+    q40: '一旦超出 NDL，必須依電腦錶指示進行減壓停留，讓多餘的氮氣安全排出，不可擅自上升。',
+  };
+
+  function submitExam() {
+    const questions = document.querySelectorAll('.question');
+    let correctCount = 0;
+    let totalCount = 0;
+    const wrongItems = [];
+
+    questions.forEach(q => {
+      const id = q.dataset.id;
+      const type = q.dataset.type;
+
+      if (type === 'single') {
+        totalCount++;
+        const selected = q.querySelector(`input[name="${id}"]:checked`);
+        const correct = q.dataset.answer;
+        const isCorrect = selected && selected.value === correct;
+
+        q.querySelectorAll('.option-label').forEach(lbl => {
+          const inp = lbl.querySelector('input');
+          if (inp.value === correct) lbl.classList.add('opt-correct');
+          else if (selected && inp.value === selected.value && !isCorrect)
+            lbl.classList.add('opt-wrong');
+          inp.disabled = true;
+        });
+
+        if (isCorrect) {
+          correctCount++;
+          q.classList.add('answered-correct');
+        } else {
+          q.classList.add('answered-wrong');
+          wrongItems.push({
+            id, label: q.querySelector('.question-num').textContent,
+            question: q.querySelector('.question-text')?.textContent || '填空題',
+            yours: selected ? selected.value : '未作答',
+            correct,
+            explain: explanations[id] || ''
+          });
+        }
+
+      } else if (type === 'multi') {
+        totalCount++;
+        const correctSet = new Set(q.dataset.answer.split(','));
+        const checkedVals = [...q.querySelectorAll(`input[name="${id}"]:checked`)].map(i => i.value);
+        const checkedSet = new Set(checkedVals);
+        const isCorrect = checkedSet.size === correctSet.size && [...correctSet].every(v => checkedSet.has(v));
+
+        q.querySelectorAll('.option-label').forEach(lbl => {
+          const inp = lbl.querySelector('input');
+          if (correctSet.has(inp.value)) lbl.classList.add('opt-correct');
+          else if (checkedSet.has(inp.value)) lbl.classList.add('opt-wrong');
+          inp.disabled = true;
+        });
+
+        if (isCorrect) {
+          correctCount++;
+          q.classList.add('answered-correct');
+        } else {
+          q.classList.add('answered-wrong');
+          wrongItems.push({
+            id, label: q.querySelector('.question-num').textContent,
+            question: q.querySelector('.question-text')?.textContent || '複選題',
+            yours: checkedVals.length ? checkedVals.join('、') : '未作答',
+            correct: [...correctSet].join('、'),
+            explain: explanations[id] || ''
+          });
+        }
+
+      } else if (type === 'fill') {
+        totalCount++;
+        const answers = JSON.parse(q.dataset.answers);
+        const inputs = q.querySelectorAll('.fill-in');
+        let allCorrect = true;
+        const wrongParts = [];
+
+        inputs.forEach((inp, idx) => {
+          const userVal = inp.value.trim();
+          const correct = answers[idx];
+          const isCorrect = userVal.toLowerCase() === correct.toLowerCase();
+          inp.disabled = true;
+          if (isCorrect) {
+            inp.classList.add('fill-correct');
+          } else {
+            allCorrect = false;
+            inp.classList.add('fill-wrong');
+            inp.title = `正解：${correct}`;
+            wrongParts.push({ idx, yours: userVal || '（未填）', correct });
+          }
+        });
+
+        if (allCorrect) {
+          correctCount++;
+          q.classList.add('answered-correct');
+        } else {
+          q.classList.add('answered-wrong');
+          const yoursStr = wrongParts.map(p => `空格${p.idx+1}：${p.yours}`).join('、');
+          const correctStr = wrongParts.map(p => `空格${p.idx+1}：${p.correct}`).join('、');
+          wrongItems.push({
+            id, label: q.querySelector('.question-num').textContent,
+            question: '填空題',
+            yours: yoursStr,
+            correct: correctStr,
+            explain: explanations[id] || ''
+          });
+        }
+      }
+    });
+
+    const score = Math.round((correctCount / totalCount) * 100);
+    const passed = score >= 80;
+
+    // Fill result
+    const now = new Date();
+    document.getElementById('snapshot-date').textContent =
+      `${now.getFullYear()}/${String(now.getMonth()+1).padStart(2,'0')}/${String(now.getDate()).padStart(2,'0')}`;
+    document.getElementById('result-name').textContent = studentName;
+    document.getElementById('score-num').textContent = score;
+    document.getElementById('score-num').className = 'score-display ' + (passed ? 'pass' : 'fail');
+    const badge = document.getElementById('pass-badge');
+    badge.textContent = passed ? '✓ 恭喜通過' : '✗ 未達及格標準';
+    badge.className = 'pass-badge ' + (passed ? 'pass' : 'fail');
+    document.getElementById('correct-count').textContent = correctCount;
+    document.getElementById('wrong-count').textContent = totalCount - correctCount;
+
+    // Wrong review
+    const reviewEl = document.getElementById('wrong-review');
+    if (wrongItems.length === 0) {
+      reviewEl.innerHTML = '<p style="text-align:center;color:var(--correct);letter-spacing:2px;font-size:15px;padding:16px 0;">🎉 全部答對！完美表現！</p>';
+    } else {
+      let html = `<div class="review-title" style="margin-top:24px;">▸ 錯誤題目解析（共 ${wrongItems.length} 題）</div>`;
+      wrongItems.forEach(item => {
+        html += `
+          <div class="review-item">
+            <div class="ri-q"><strong>${item.label}</strong> ${item.question.substring(0,50)}${item.question.length>50?'…':''}</div>
+            <div class="ri-yours">✗ 你的答案：${item.yours}</div>
+            <div class="ri-correct">✓ 正確答案：${item.correct}</div>
+            ${item.explain ? `<div class="ri-explain">💡 ${item.explain}</div>` : ''}
+          </div>`;
+      });
+      reviewEl.innerHTML = html;
+    }
+
+    document.getElementById('result-panel').style.display = 'block';
+    document.getElementById('btn-submit').style.display = 'none';
+    document.getElementById('result-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // ── Download result as JPG (canvas drawn) ──
+  async function downloadResult() {
+    const btn = document.getElementById('btn-download');
+    btn.disabled = true;
+    btn.textContent = '⏳ 產生中...';
+
+    try {
+      const score = parseInt(document.getElementById('score-num').textContent);
+      const passed = score >= 80;
+      const correctN = document.getElementById('correct-count').textContent;
+      const wrongN = document.getElementById('wrong-count').textContent;
+      const dateStr = document.getElementById('snapshot-date').textContent;
+
+      const W = 800, H = 480;
+      const canvas = document.createElement('canvas');
+      canvas.width = W; canvas.height = H;
+      const ctx = canvas.getContext('2d');
+
+      // Background gradient
+      const bg = ctx.createLinearGradient(0, 0, W, H);
+      bg.addColorStop(0, '#021526');
+      bg.addColorStop(0.5, '#0a2a4a');
+      bg.addColorStop(1, '#021526');
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, W, H);
+
+      // Subtle radial glow
+      const glow = ctx.createRadialGradient(W*0.25, H*0.5, 0, W*0.25, H*0.5, W*0.55);
+      glow.addColorStop(0, 'rgba(33,150,184,0.12)');
+      glow.addColorStop(1, 'transparent');
+      ctx.fillStyle = glow;
+      ctx.fillRect(0, 0, W, H);
+
+      // Border
+      ctx.strokeStyle = 'rgba(33,150,184,0.4)';
+      ctx.lineWidth = 1.5;
+      roundRect(ctx, 12, 12, W-24, H-24, 16);
+      ctx.stroke();
+
+      // Top separator line
+      ctx.strokeStyle = 'rgba(33,150,184,0.25)';
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(48, 80); ctx.lineTo(W-48, 80); ctx.stroke();
+
+      // Logo text
+      ctx.fillStyle = '#2196b8';
+      ctx.font = "bold 13px Microsoft JhengHei, sans-serif";
+      ctx.letterSpacing = '4px';
+      ctx.fillText('PURE DIVE 純潛水 · 初級水肺學科測試', 48, 54);
+
+      // Date
+      ctx.fillStyle = 'rgba(232,244,248,0.3)';
+      ctx.font = "12px Microsoft JhengHei, sans-serif";
+      ctx.textAlign = 'right';
+      ctx.fillText(dateStr, W-48, 54);
+      ctx.textAlign = 'left';
+
+      // Student name label
+      ctx.fillStyle = 'rgba(232,244,248,0.4)';
+      ctx.font = "13px Microsoft JhengHei, sans-serif";
+      ctx.fillText('學員', 48, 116);
+
+      // Student name
+      ctx.fillStyle = '#f4c542';
+      ctx.font = "bold 26px Microsoft JhengHei, sans-serif";
+      ctx.fillText(studentName, 48, 150);
+
+      // Score big number
+      const scoreColor = passed ? '#2ecc71' : '#e74c3c';
+      ctx.fillStyle = scoreColor;
+      ctx.font = "bold 120px Microsoft JhengHei, sans-serif";
+      ctx.textAlign = 'right';
+      ctx.fillText(String(score), W-48, 210);
+      ctx.textAlign = 'left';
+
+      // /100
+      ctx.fillStyle = 'rgba(232,244,248,0.3)';
+      ctx.font = "14px Microsoft JhengHei, sans-serif";
+      ctx.textAlign = 'right';
+      ctx.fillText('/ 100 分', W-48, 230);
+      ctx.textAlign = 'left';
+
+      // Pass badge pill
+      const badgeText = passed ? '✓  恭喜通過' : '✗  未達及格標準';
+      ctx.font = "bold 18px Microsoft JhengHei, sans-serif";
+      const bw = ctx.measureText(badgeText).width + 40;
+      const bx = 48, by = 170;
+      ctx.fillStyle = passed ? 'rgba(46,204,113,0.15)' : 'rgba(231,76,60,0.15)';
+      roundRect(ctx, bx, by, bw, 34, 17);
+      ctx.fill();
+      ctx.strokeStyle = scoreColor;
+      ctx.lineWidth = 1;
+      roundRect(ctx, bx, by, bw, 34, 17);
+      ctx.stroke();
+      ctx.fillStyle = scoreColor;
+      ctx.fillText(badgeText, bx+20, by+22);
+
+      // Divider
+      ctx.strokeStyle = 'rgba(33,150,184,0.2)';
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(48, 290); ctx.lineTo(W-48, 290); ctx.stroke();
+
+      // Stats row
+      const stats = [
+        { label: '答對', value: correctN, color: '#2ecc71' },
+        { label: '答錯', value: wrongN,   color: '#e74c3c' },
+        { label: '總題', value: '40',      color: '#f4c542' },
+      ];
+      stats.forEach((s, i) => {
+        const sx = 48 + i * 220;
+        ctx.fillStyle = s.color;
+        ctx.font = "bold 52px Microsoft JhengHei, sans-serif";
+        ctx.fillText(s.value, sx, 360);
+        ctx.fillStyle = 'rgba(232,244,248,0.5)';
+        ctx.font = "14px Microsoft JhengHei, sans-serif";
+        ctx.fillText(s.label, sx, 385);
+      });
+
+      // Footer
+      ctx.fillStyle = 'rgba(232,244,248,0.2)';
+      ctx.font = "12px Microsoft JhengHei, sans-serif";
+      ctx.textAlign = 'center';
+      ctx.fillText('PURE DIVE 純潛水  ·  pure-dive.com  ·  Keelung, Taiwan', W/2, H-28);
+      ctx.textAlign = 'left';
+
+      // Download
+      const link = document.createElement('a');
+      const safeName = studentName.replace(/\s/g, '_') || 'result';
+      link.download = `純潛水學科測試_${safeName}.jpg`;
+      link.href = canvas.toDataURL('image/jpeg', 0.93);
+      link.click();
+
+    } catch(e) {
+      alert('下載失敗：' + e.message);
+    }
+
+    btn.disabled = false;
+    btn.innerHTML = '⬇ 下載成績單 JPG';
+  }
+
+  function roundRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x+r, y);
+    ctx.lineTo(x+w-r, y);
+    ctx.quadraticCurveTo(x+w, y, x+w, y+r);
+    ctx.lineTo(x+w, y+h-r);
+    ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+    ctx.lineTo(x+r, y+h);
+    ctx.quadraticCurveTo(x, y+h, x, y+h-r);
+    ctx.lineTo(x, y+r);
+    ctx.quadraticCurveTo(x, y, x+r, y);
+    ctx.closePath();
+  }
+
+  function retryExam() {
+    document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(i => {
+      i.checked = false;
+      i.disabled = false;
+    });
+    document.querySelectorAll('.fill-in').forEach(i => {
+      i.value = '';
+      i.disabled = false;
+      i.className = 'fill-in';
+    });
+    document.querySelectorAll('.question').forEach(q => {
+      q.className = 'question';
+    });
+    document.querySelectorAll('.option-label').forEach(l => {
+      l.className = 'option-label';
+    });
+
+    document.getElementById('result-panel').style.display = 'none';
+    document.getElementById('btn-submit').style.display = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
