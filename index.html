@@ -1793,10 +1793,9 @@
       const dataUrl = cv.toDataURL('image/jpeg', 0.95);
       const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
       if (isMobile) {
-        // Open image in new tab so user can long-press to save
-        const win = window.open();
-        win.document.write('<img src="' + dataUrl + '" style="max-width:100%;display:block;margin:auto;" /><p style="text-align:center;font-family:sans-serif;color:#555;font-size:14px;">長按圖片 → 儲存圖片</p>');
-        win.document.close();
+        const modal = document.getElementById('img-modal');
+        document.getElementById('img-modal-img').src = dataUrl;
+        modal.style.display = 'flex';
       } else {
         const a = document.createElement('a');
         a.download = 'SDI_學科測試_' + (studentName || 'result') + '.jpg';
@@ -1847,5 +1846,12 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 </script>
+
+<!-- Mobile image preview modal -->
+<div id="img-modal" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.92);flex-direction:column;align-items:center;justify-content:center;padding:20px;">
+  <img id="img-modal-img" src="" style="max-width:100%;max-height:75vh;border-radius:8px;display:block;">
+  <p style="color:#fff;font-family:sans-serif;font-size:16px;margin-top:16px;text-align:center;">長按圖片 → 儲存至相簿</p>
+  <button onclick="document.getElementById('img-modal').style.display='none'" style="margin-top:16px;padding:12px 32px;background:#2196b8;color:#fff;border:none;border-radius:50px;font-size:16px;font-family:sans-serif;cursor:pointer;">關閉</button>
+</div>
 </body>
 </html>
