@@ -1789,11 +1789,20 @@
 
 
 
-      // Download
-      const a = document.createElement('a');
-      a.download = 'SDI_學科測試_' + (studentName || 'result') + '.jpg';
-      a.href = cv.toDataURL('image/jpeg', 0.95);
-      a.click();
+      // Download — mobile-compatible
+      const dataUrl = cv.toDataURL('image/jpeg', 0.95);
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isMobile) {
+        // Open image in new tab so user can long-press to save
+        const win = window.open();
+        win.document.write('<img src="' + dataUrl + '" style="max-width:100%;display:block;margin:auto;" /><p style="text-align:center;font-family:sans-serif;color:#555;font-size:14px;">長按圖片 → 儲存圖片</p>');
+        win.document.close();
+      } else {
+        const a = document.createElement('a');
+        a.download = 'SDI_學科測試_' + (studentName || 'result') + '.jpg';
+        a.href = dataUrl;
+        a.click();
+      }
 
     } catch(e) {
       alert('下載失敗：' + e.message);
