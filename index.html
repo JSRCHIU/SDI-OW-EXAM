@@ -155,7 +155,7 @@
   }
 
   .section-title {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 700;
     letter-spacing: 3px;
     color: var(--surface);
@@ -164,7 +164,7 @@
 
   .section-score {
     margin-left: auto;
-    font-size: 13px;
+    font-size: 16px;
     color: rgba(232,244,248,0.3);
     letter-spacing: 1px;
   }
@@ -195,7 +195,7 @@
   }
 
   .question-text {
-    font-size: 15px;
+    font-size: 18px;
     line-height: 1.7;
     margin-bottom: 16px;
     color: rgba(232,244,248,0.9);
@@ -204,7 +204,7 @@
   .question-num {
     font-weight: 700;
     color: var(--surface);
-    font-size: 12px;
+    font-size: 14px;
     letter-spacing: 2px;
     margin-bottom: 8px;
     display: block;
@@ -227,7 +227,7 @@
     background: rgba(2,21,38,0.4);
     cursor: pointer;
     transition: all 0.2s;
-    font-size: 14px;
+    font-size: 17px;
     line-height: 1.5;
   }
 
@@ -772,7 +772,7 @@
 
 <header style="padding:16px 20px;">
   <div class="exam-meta" style="margin-top:0;">
-    <span>總題數 <strong>40</strong> 題</span>
+    <span>總題數 <strong>50</strong> 題</span>
     <span>滿分 <strong>100</strong> 分</span>
     <span>及格 <strong>80</strong> 分</span>
   </div>
@@ -781,536 +781,625 @@
 
 <main id="exam-form">
 
-  <!-- 1. 潛水物理 -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-icon">🔬</div>
-      <span class="section-title">潛水物理</span>
-      <span class="section-score">5 題</span>
-    </div>
-
-    <!-- Q1 填空 -->
-    <div class="question" data-id="q1" data-type="fill" data-answers='["21","79"]'>
-      <span class="question-num">Q1 / 填空</span>
-      <div class="fill-group">
-        <span>空氣的組成中</span>
-        <input class="fill-in" data-idx="0" placeholder="??">
-        <span>% 是氧氣，</span>
-        <input class="fill-in" data-idx="1" placeholder="??">
-        <span>% 是氮氣。</span>
-      </div>
-    </div>
-
-    <!-- Q2 -->
-    <div class="question" data-id="q2" data-type="single" data-answer="3">
-      <span class="question-num">Q2 / 單選</span>
-      <p class="question-text">那一種顏色在下潛過程中會最早消失？</p>
-      <div class="options">
-        <label class="option-label"><input type="radio" name="q2" value="1">① 藍</label>
-        <label class="option-label"><input type="radio" name="q2" value="2">② 黃</label>
-        <label class="option-label"><input type="radio" name="q2" value="3">③ 紅</label>
-        <label class="option-label"><input type="radio" name="q2" value="4">④ 綠</label>
-      </div>
-    </div>
-
-    <!-- Q3 複選 -->
-    <div class="question" data-id="q3" data-type="multi" data-answer="1,2,3,4">
-      <span class="question-num">Q3 / 複選</span>
-      <div class="multi-note">▸ 複選題</div>
-      <p class="question-text">潮汐的形成主要是受了月球引力的影響，而下列那些節日通常是潮差較大的時候？</p>
-      <div class="options">
-        <label class="option-label"><input type="checkbox" name="q3" value="1">① 端午節</label>
-        <label class="option-label"><input type="checkbox" name="q3" value="2">② 中秋節</label>
-        <label class="option-label"><input type="checkbox" name="q3" value="3">③ 春節</label>
-        <label class="option-label"><input type="checkbox" name="q3" value="4">④ 元宵節</label>
-      </div>
-    </div>
-
-    <!-- Q4 -->
-    <div class="question" data-id="q4" data-type="single" data-answer="1">
-      <span class="question-num">Q4 / 單選</span>
-      <p class="question-text">海浪的形成主要是受了什麼的影響？</p>
-      <div class="options">
-        <label class="option-label"><input type="radio" name="q4" value="1">① 風</label>
-        <label class="option-label"><input type="radio" name="q4" value="2">② 氣溫</label>
-        <label class="option-label"><input type="radio" name="q4" value="3">③ 引力</label>
-        <label class="option-label"><input type="radio" name="q4" value="4">④ 地球自轉</label>
-      </div>
-    </div>
-
-    <!-- Q5 -->
-    <div class="question" data-id="q5" data-type="single" data-answer="3">
-      <span class="question-num">Q5 / 單選</span>
-      <p class="question-text">在海水中 25 米處，潛水員身上所承受的環境壓力為？</p>
-      <div class="options">
-        <label class="option-label"><input type="radio" name="q5" value="1">① 2 ATA</label>
-        <label class="option-label"><input type="radio" name="q5" value="2">② 2.5 Bar</label>
-        <label class="option-label"><input type="radio" name="q5" value="3">③ 3.5 ATA</label>
-        <label class="option-label"><input type="radio" name="q5" value="4">④ 25 kg/cm²</label>
-      </div>
-    </div>
-  </div>
-
-  <!-- 2. 潛水生理 -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-icon">🫁</div>
-      <span class="section-title">潛水生理</span>
-      <span class="section-score">5 題</span>
-    </div>
-
-    <!-- Q6 填空 -->
-    <div class="question" data-id="q6" data-type="fill" data-answers='["33","4","25"]'>
-      <span class="question-num">Q6 / 填空</span>
-      <div class="fill-group">
-        <span>在水中，視覺上放大了</span>
-        <input class="fill-in" data-idx="0" placeholder="??">
-        <span>%，聲音傳播速度快了</span>
-        <input class="fill-in" data-idx="1" placeholder="??">
-        <span>倍，熱的流失快了</span>
-        <input class="fill-in" data-idx="2" placeholder="??">
-        <span>倍。</span>
-      </div>
-    </div>
-
-    <!-- Q7 -->
-    <div class="question" data-id="q7" data-type="single" data-answer="2">
-      <span class="question-num">Q7 / 單選</span>
-      <p class="question-text">隨著下潛深度越深，壓力越大，氮氣溶入身體的速率？</p>
-      <div class="options">
-        <label class="option-label"><input type="radio" name="q7" value="1">① 不變</label>
-        <label class="option-label"><input type="radio" name="q7" value="2">② 越快</label>
-        <label class="option-label"><input type="radio" name="q7" value="3">③ 越慢</label>
-        <label class="option-label"><input type="radio" name="q7" value="4">④ 因人而異</label>
-      </div>
-    </div>
-
-    <!-- Q8 -->
-    <div class="question" data-id="q8" data-type="single" data-answer="3">
-      <span class="question-num">Q8 / 單選</span>
-      <p class="question-text">因壓力而造成的擠壓，往往造成耳膜不適，因此我們需要在何時開始做耳壓平衡的動作？</p>
-      <div class="options">
-        <label class="option-label"><input type="radio" name="q8" value="1">① 水下一米</label>
-        <label class="option-label"><input type="radio" name="q8" value="2">② 耳朵痛時</label>
-        <label class="option-label"><input type="radio" name="q8" value="3">③ 開始下潛時</label>
-        <label class="option-label"><input type="radio" name="q8" value="4">④ 上升時</label>
-      </div>
-    </div>
-
-    <!-- Q9 複選 -->
-    <div class="question" data-id="q9" data-type="multi" data-answer="1,2,3,4">
-      <span class="question-num">Q9 / 複選</span>
-      <div class="multi-note">▸ 複選題</div>
-      <p class="question-text">潛水完，因為身體內有殘氮，為了安全應儘量避免？</p>
-      <div class="options">
-        <label class="option-label"><input type="checkbox" name="q9" value="1">① 抽煙</label>
-        <label class="option-label"><input type="checkbox" name="q9" value="2">② 喝酒</label>
-        <label class="option-label"><input type="checkbox" name="q9" value="3">③ 泡溫泉</label>
-        <label class="option-label"><input type="checkbox" name="q9" value="4">④ 搭飛機</label>
-      </div>
-    </div>
-
-    <!-- Q10 -->
-    <div class="question" data-id="q10" data-type="single" data-answer="4">
-      <span class="question-num">Q10 / 單選</span>
-      <p class="question-text">潛水後多久可以搭飛機？</p>
-      <div class="options">
-        <label class="option-label"><input type="radio" name="q10" value="1">① 3 小時</label>
-        <label class="option-label"><input type="radio" name="q10" value="2">② 6 小時</label>
-        <label class="option-label"><input type="radio" name="q10" value="3">③ 12 小時</label>
-        <label class="option-label"><input type="radio" name="q10" value="4">④ 依潛水電腦錶指示</label>
-      </div>
-    </div>
-  </div>
-
-  <!-- 3. 潛水醫學 -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-icon">🏥</div>
-      <span class="section-title">潛水醫學</span>
-      <span class="section-score">5 題</span>
-    </div>
-
-    <!-- Q11 -->
-    <div class="question" data-id="q11" data-type="single" data-answer="4">
-      <span class="question-num">Q11 / 單選</span>
-      <p class="question-text">感冒時不建議潛水是因為？</p>
-      <div class="options">
-        <label class="option-label"><input type="radio" name="q11" value="1">① 耳壓不易平衡</label>
-        <label class="option-label"><input type="radio" name="q11" value="2">② 鼻竇不易平衡</label>
-        <label class="option-label"><input type="radio" name="q11" value="3">③ 額竇不易平衡</label>
-        <label class="option-label"><input type="radio" name="q11" value="4">④ 以上皆是</label>
-      </div>
-    </div>
-
-    <!-- Q12 -->
-    <div class="question" data-id="q12" data-type="single" data-answer="4">
-      <span class="question-num">Q12 / 單選</span>
-      <p class="question-text">下列何者「不是」造成暈眩之形成原因？</p>
-      <div class="options">
-        <label class="option-label"><input type="radio" name="q12" value="1">① 海浪</label>
-        <label class="option-label"><input type="radio" name="q12" value="2">② 耳壓不平衡</label>
-        <label class="option-label"><input type="radio" name="q12" value="3">③ 冷水進入中耳</label>
-        <label class="option-label"><input type="radio" name="q12" value="4">④ 潛太深</label>
-      </div>
-    </div>
-
-    <!-- Q13 -->
-    <div class="question" data-id="q13" data-type="single" data-answer="3">
-      <span class="question-num">Q13 / 單選</span>
-      <p class="question-text">下列何者為提高減壓症風險之因素？</p>
-      <div class="options">
-        <label class="option-label"><input type="radio" name="q13" value="1">① 充足睡眠</label>
-        <label class="option-label"><input type="radio" name="q13" value="2">② 較長的水面休息時間</label>
-        <label class="option-label"><input type="radio" name="q13" value="3">③ 抽煙喝酒</label>
-        <label class="option-label"><input type="radio" name="q13" value="4">④ 多喝水</label>
-      </div>
-    </div>
-
-    <!-- Q14 -->
-    <div class="question" data-id="q14" data-type="single" data-answer="4">
-      <span class="question-num">Q14 / 單選</span>
-      <p class="question-text">如何能減少殘氮對身體的影響？</p>
-      <div class="options">
-        <label class="option-label"><input type="radio" name="q14" value="1">① 不要在深處停留太久</label>
-        <label class="option-label"><input type="radio" name="q14" value="2">② 較長的水面休息時間</label>
-        <label class="option-label"><input type="radio" name="q14" value="3">③ 使用高氧潛水</label>
-        <label class="option-label"><input type="radio" name="q14" value="4">④ 以上皆是</label>
-      </div>
-    </div>
-
-    <!-- Q15 -->
-    <div class="question" data-id="q15" data-type="single" data-answer="1">
-      <span class="question-num">Q15 / 單選</span>
-      <p class="question-text">OW 的潛水深度限制在 18 米，但經過深潛課程訓練後的建議深度仍為 30 米，主要是考量？</p>
-      <div class="options">
-        <label class="option-label"><input type="radio" name="q15" value="1">① 氮醉</label>
-        <label class="option-label"><input type="radio" name="q15" value="2">② 氧中毒</label>
-        <label class="option-label"><input type="radio" name="q15" value="3">③ 水溫</label>
-        <label class="option-label"><input type="radio" name="q15" value="4">④ 耗氣量</label>
-      </div>
-    </div>
-  </div>
-
-  <!-- 4. 水肺技巧 -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-icon">🤿</div>
-      <span class="section-title">水肺技巧</span>
-      <span class="section-score">5 題</span>
-    </div>
-
-    <div class="question" data-id="q16" data-type="single" data-answer="3">
-      <span class="question-num">Q16 / 單選</span>
-      <p class="question-text">使用調節器時應採用何種呼吸方式？</p>
-      <div class="options">
-        <label class="option-label"><input type="radio" name="q16" value="1">① 短猝呼吸</label>
-        <label class="option-label"><input type="radio" name="q16" value="2">② 大口呼吸</label>
-        <label class="option-label"><input type="radio" name="q16" value="3">③ 深吸慢吐</label>
-        <label class="option-label"><input type="radio" name="q16" value="4">④ 淺吸暴吐</label>
-      </div>
-    </div>
-
-    <div class="question" data-id="q17" data-type="single" data-answer="2">
-      <span class="question-num">Q17 / 單選</span>
-      <p class="question-text">為防止面鏡擠壓，下列何者為正確方式？</p>
-      <div class="options">
-        <label class="option-label"><input type="radio" name="q17" value="1">① 將面鏡帶束緊</label>
-        <label class="option-label"><input type="radio" name="q17" value="2">② 用鼻子微向面鏡內吐氣</label>
-        <label class="option-label"><input type="radio" name="q17" value="3">③ 將面鏡帶放鬆</label>
-        <label class="option-label"><input type="radio" name="q17" value="4">④ 選用質地軟的面鏡</label>
-      </div>
-    </div>
-
-    <!-- Q18 填空 -->
-    <div class="question" data-id="q18" data-type="fill" data-answers='["充","洩"]'>
-      <span class="question-num">Q18 / 填空</span>
-      <div class="fill-group">
-        <span>下潛的過程中 BC 應適量的</span>
-        <input class="fill-in" data-idx="0" placeholder="?" style="width:50px">
-        <span>氣，反之上升時則應</span>
-        <input class="fill-in" data-idx="1" placeholder="?" style="width:50px">
-        <span>氣。</span>
-      </div>
-    </div>
-
-    <div class="question" data-id="q19" data-type="single" data-answer="4">
-      <span class="question-num">Q19 / 單選</span>
-      <p class="question-text">為保護潛水員也保護海洋環境，應有何項良好的技能？</p>
-      <div class="options">
-        <label class="option-label"><input type="radio" name="q19" value="1">① 蛙鞋踢法</label>
-        <label class="option-label"><input type="radio" name="q19" value="2">② 有控制的上升</label>
-        <label class="option-label"><input type="radio" name="q19" value="3">③ 導航</label>
-        <label class="option-label"><input type="radio" name="q19" value="4">④ 中性浮力</label>
-      </div>
-    </div>
-
-    <div class="question" data-id="q20" data-type="single" data-answer="1">
-      <span class="question-num">Q20 / 單選</span>
-      <p class="question-text">下列何者為危險的行為，必須完全禁止？</p>
-      <div class="options">
-        <label class="option-label"><input type="radio" name="q20" value="1">① 閉氣上升</label>
-        <label class="option-label"><input type="radio" name="q20" value="2">② 倒立</label>
-        <label class="option-label"><input type="radio" name="q20" value="3">③ 快速下潛</label>
-        <label class="option-label"><input type="radio" name="q20" value="4">④ 將二級頭離開嘴邊</label>
-      </div>
-    </div>
-  </div>
-
-  <!-- 5. 潛水裝備 -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-icon">⚙️</div>
-      <span class="section-title">潛水裝備</span>
-      <span class="section-score">5 題</span>
-    </div>
-
-    <div class="question" data-id="q21" data-type="single" data-answer="4">
-      <span class="question-num">Q21 / 單選</span>
-      <p class="question-text">調節器的選擇應考量？</p>
-      <div class="options">
-        <label class="option-label"><input type="radio" name="q21" value="1">① 價格</label>
-        <label class="option-label"><input type="radio" name="q21" value="2">② 美觀</label>
-        <label class="option-label"><input type="radio" name="q21" value="3">③ 品牌</label>
-        <label class="option-label"><input type="radio" name="q21" value="4">④ 供氣穩定呼吸阻抗低</label>
-      </div>
-    </div>
-
-    <div class="question" data-id="q22" data-type="single" data-answer="4">
-      <span class="question-num">Q22 / 單選</span>
-      <p class="question-text">潛水裝備的保養周期為？</p>
-      <div class="options">
-        <label class="option-label"><input type="radio" name="q22" value="1">① 100 次</label>
-        <label class="option-label"><input type="radio" name="q22" value="2">② 二年</label>
-        <label class="option-label"><input type="radio" name="q22" value="3">③ 一年</label>
-        <label class="option-label"><input type="radio" name="q22" value="4">④ 依製造商建議</label>
-      </div>
-    </div>
-
-    <div class="question" data-id="q23" data-type="single" data-answer="1">
-      <span class="question-num">Q23 / 單選</span>
-      <p class="question-text">潛水裝備的收藏應放置於？</p>
-      <div class="options">
-        <label class="option-label"><input type="radio" name="q23" value="1">① 通風陰涼</label>
-        <label class="option-label"><input type="radio" name="q23" value="2">② 陽光曝曬</label>
-        <label class="option-label"><input type="radio" name="q23" value="3">③ 後車箱內</label>
-        <label class="option-label"><input type="radio" name="q23" value="4">④ 防潮箱內</label>
-      </div>
-    </div>
-
-    <div class="question" data-id="q24" data-type="single" data-answer="3">
-      <span class="question-num">Q24 / 單選</span>
-      <p class="question-text">為控制體內氮殘壓不會過高，重覆潛水必須一定要使用？</p>
-      <div class="options">
-        <label class="option-label"><input type="radio" name="q24" value="1">① 浮力袋</label>
-        <label class="option-label"><input type="radio" name="q24" value="2">② 深度計</label>
-        <label class="option-label"><input type="radio" name="q24" value="3">③ 潛水電腦錶</label>
-        <label class="option-label"><input type="radio" name="q24" value="4">④ 手電筒</label>
-      </div>
-    </div>
-
-    <div class="question" data-id="q25" data-type="single" data-answer="1">
-      <span class="question-num">Q25 / 單選</span>
-      <p class="question-text">出水後面鏡拿下，下列何者「是」應放置的位置？</p>
-      <div class="options">
-        <label class="option-label"><input type="radio" name="q25" value="1">① BCD 口袋</label>
-        <label class="option-label"><input type="radio" name="q25" value="2">② 蛙鞋</label>
-        <label class="option-label"><input type="radio" name="q25" value="3">③ 頭頂</label>
-        <label class="option-label"><input type="radio" name="q25" value="4">④ 脖子</label>
-      </div>
-    </div>
-  </div>
-
-  <!-- 6. 潛水計劃 -->
   <div class="section">
     <div class="section-header">
       <div class="section-icon">🗺️</div>
-      <span class="section-title">潛水計劃</span>
-      <span class="section-score">5 題</span>
+      <span class="section-title">潛水計劃與安全</span>
+      <span class="section-score">7 題</span>
     </div>
 
-    <!-- Q26 填空 -->
-    <div class="question" data-id="q26" data-type="fill" data-answers='["A"]'>
-      <span class="question-num">Q26 / 填空</span>
-      <div class="fill-group">
-        <span>潛點 A：深度 18 米，潛點 B：深度 11 米。第一潛應以安排哪個為先？</span>
-        <input class="fill-in" data-idx="0" placeholder="?" style="width:50px">
-      </div>
-    </div>
-
-    <!-- Q27 -->
-    <div class="question" data-id="q27" data-type="single" data-answer="3">
-      <span class="question-num">Q27 / 單選</span>
-      <p class="question-text">潛伴遺失時，下列何者為「非」？</p>
+    <div class="question" data-id="q1" data-type="single" data-answer="C">
+      <span class="question-num">Q1</span>
+      <p class="question-text">如果你無法找到失踪的潛伴：</p>
       <div class="options">
-        <label class="option-label"><input type="radio" name="q27" value="1">① 原地搜尋一分鐘</label>
-        <label class="option-label"><input type="radio" name="q27" value="2">② 發出聲音或燈光訊號</label>
-        <label class="option-label"><input type="radio" name="q27" value="3">③ 依一分鐘不超過 9 米速度上升，並在五米做好安全停留後回到水面</label>
-        <label class="option-label"><input type="radio" name="q27" value="4">④ 水面等待三分鐘後，若無尋回再由水面回到岸邊</label>
+        <label class="option-label"><input type="radio" name="q1" value="A">　A. 開始水下搜索，使用擴展方形模式</label>
+        <label class="option-label"><input type="radio" name="q1" value="B">　B. 向最近的軍事基地尋求協助</label>
+        <label class="option-label"><input type="radio" name="q1" value="C">　C. 水下搜索應該留給訓練有素的專業人員</label>
+        <label class="option-label"><input type="radio" name="q1" value="D">　D. 所有上述回答都不適合</label>
       </div>
     </div>
 
-    <!-- Q28 填空 -->
-    <div class="question" data-id="q28" data-type="fill" data-answers='["100"]'>
-      <span class="question-num">Q28 / 填空</span>
-      <div class="fill-group">
-        <span>若無特別約定，當殘壓為</span>
-        <input class="fill-in" data-idx="0" placeholder="??">
-        <span>Bar 時，應立即通知導潛準備返航。</span>
-      </div>
-    </div>
-
-    <!-- Q29 -->
-    <div class="question" data-id="q29" data-type="single" data-answer="2">
-      <span class="question-num">Q29 / 單選</span>
-      <p class="question-text">正確的潛伴分配應為？</p>
+    <div class="question" data-id="q2" data-type="single" data-answer="D">
+      <span class="question-num">Q2</span>
+      <p class="question-text">你可以通過以下方法預防暈船：</p>
       <div class="options">
-        <label class="option-label"><input type="radio" name="q29" value="1">① 男生女生配</label>
-        <label class="option-label"><input type="radio" name="q29" value="2">② 資深資淺配</label>
-        <label class="option-label"><input type="radio" name="q29" value="3">③ 同學配</label>
-        <label class="option-label"><input type="radio" name="q29" value="4">④ 老少配</label>
+        <label class="option-label"><input type="radio" name="q2" value="A">　A. 盯著地平線</label>
+        <label class="option-label"><input type="radio" name="q2" value="B">　B. 避開柴油煙霧和其他強烈氣味</label>
+        <label class="option-label"><input type="radio" name="q2" value="C">　C. 出發前吃一頓大餐</label>
+        <label class="option-label"><input type="radio" name="q2" value="D">　D. 第一個和第二個答案都是正確的</label>
       </div>
     </div>
 
-    <!-- Q30 填空 -->
-    <div class="question" data-id="q30" data-type="fill" data-answers='["25"]'>
-      <span class="question-num">Q30 / 填空</span>
-      <div class="fill-group">
-        <span>SDI 的進階水肺潛水員應具有</span>
-        <input class="fill-in" data-idx="0" placeholder="??">
-        <span>次以上的潛水經驗。</span>
+    <div class="question" data-id="q3" data-type="single" data-answer="D">
+      <span class="question-num">Q3</span>
+      <p class="question-text">如果你懷疑你或其他潛水員表現出減壓病症狀：</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q3" value="A">　A. 自己開車去，或送有症狀的潛水員到最近的減壓艙</label>
+        <label class="option-label"><input type="radio" name="q3" value="B">　B. 啟動應急醫療服務（EMS）系統</label>
+        <label class="option-label"><input type="radio" name="q3" value="C">　C. 聯絡潛水員警報網（DAN）</label>
+        <label class="option-label"><input type="radio" name="q3" value="D">　D. 第二個和第三個答案都是正確的</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q4" data-type="single" data-answer="C">
+      <span class="question-num">Q4</span>
+      <p class="question-text">水面問題管理的第一條規則是：</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q4" value="A">　A. 發出求救信號</label>
+        <label class="option-label"><input type="radio" name="q4" value="B">　B. 扔下你的水肺潛水裝備</label>
+        <label class="option-label"><input type="radio" name="q4" value="C">　C. 建立正浮力</label>
+        <label class="option-label"><input type="radio" name="q4" value="D">　D. 所有上述回答都不適合</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q5" data-type="single" data-answer="B">
+      <span class="question-num">Q5</span>
+      <p class="question-text">在大多數重複的潛水中，你的電腦錶將提供比單次潛水_______免減壓極限。</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q5" value="A">　A. 較不保守</label>
+        <label class="option-label"><input type="radio" name="q5" value="B">　B. 更保守的</label>
+        <label class="option-label"><input type="radio" name="q5" value="C">　C. 大很多的</label>
+        <label class="option-label"><input type="radio" name="q5" value="D">　D. 所有上述回答都不適合</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q6" data-type="single" data-answer="D">
+      <span class="question-num">Q6</span>
+      <p class="question-text">如果你無法按要求做減壓停留：</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q6" value="A">　A. 吸純氧至少 30 分鐘</label>
+        <label class="option-label"><input type="radio" name="q6" value="B">　B. 在未來 24 小時內注意任何減壓病的症狀和癥兆</label>
+        <label class="option-label"><input type="radio" name="q6" value="C">　C. 至少 24 小時內不要潛水或飛行</label>
+        <label class="option-label"><input type="radio" name="q6" value="D">　D. 所有上述回答</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q7" data-type="single" data-answer="C">
+      <span class="question-num">Q7</span>
+      <p class="question-text">任何潛水員都能以任何________發出______的信號。</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q7" value="A">　A. 原因，縮短</label>
+        <label class="option-label"><input type="radio" name="q7" value="B">　B. 潛伴，繼續</label>
+        <label class="option-label"><input type="radio" name="q7" value="C">　C. 原因，中止潛水</label>
+        <label class="option-label"><input type="radio" name="q7" value="D">　D. 潛伴，中止潛水</label>
       </div>
     </div>
   </div>
 
-  <!-- 7. 緊急處理 -->
   <div class="section">
     <div class="section-header">
-      <div class="section-icon">🚨</div>
-      <span class="section-title">緊急處理</span>
-      <span class="section-score">5 題</span>
+      <div class="section-icon">🫁</div>
+      <span class="section-title">潛水生理與技巧</span>
+      <span class="section-score">9 題</span>
     </div>
 
-    <div class="question" data-id="q31" data-type="single" data-answer="3">
-      <span class="question-num">Q31 / 單選</span>
-      <p class="question-text">如不慎被獅子魚刺傷應如何處置？</p>
+    <div class="question" data-id="q8" data-type="single" data-answer="B">
+      <span class="question-num">Q8</span>
+      <p class="question-text">_________ 對潛水有不利影響。</p>
       <div class="options">
-        <label class="option-label"><input type="radio" name="q31" value="1">① 沖尿</label>
-        <label class="option-label"><input type="radio" name="q31" value="2">② 泡醋</label>
-        <label class="option-label"><input type="radio" name="q31" value="3">③ 泡熱水</label>
-        <label class="option-label"><input type="radio" name="q31" value="4">④ 泡淡水</label>
+        <label class="option-label"><input type="radio" name="q8" value="A">　A. 規律性的鍛鍊</label>
+        <label class="option-label"><input type="radio" name="q8" value="B">　B. 吸菸</label>
+        <label class="option-label"><input type="radio" name="q8" value="C">　C. 視力受損</label>
+        <label class="option-label"><input type="radio" name="q8" value="D">　D. 所有上述回答都不適合</label>
       </div>
     </div>
 
-    <div class="question" data-id="q32" data-type="single" data-answer="3">
-      <span class="question-num">Q32 / 單選</span>
-      <p class="question-text">如不慎被水母螫傷應如何處置？</p>
+
+    <div class="question" data-id="q9" data-type="single" data-answer="D">
+      <span class="question-num">Q9</span>
+      <p class="question-text">永遠在你的下列極限之內潛水：</p>
       <div class="options">
-        <label class="option-label"><input type="radio" name="q32" value="1">① 沖尿</label>
-        <label class="option-label"><input type="radio" name="q32" value="2">② 泡醋</label>
-        <label class="option-label"><input type="radio" name="q32" value="3">③ 泡熱水</label>
-        <label class="option-label"><input type="radio" name="q32" value="4">④ 泡淡水</label>
+        <label class="option-label"><input type="radio" name="q9" value="A">　A. 潛水訓練</label>
+        <label class="option-label"><input type="radio" name="q9" value="B">　B. 潛水裝備</label>
+        <label class="option-label"><input type="radio" name="q9" value="C">　C. 潛水經驗</label>
+        <label class="option-label"><input type="radio" name="q9" value="D">　D. 所有上述回答</label>
       </div>
     </div>
 
-    <div class="question" data-id="q33" data-type="single" data-answer="3">
-      <span class="question-num">Q33 / 單選</span>
-      <p class="question-text">為預防潛水抽筋，何者為「非」？</p>
+    <div class="question" data-id="q10" data-type="single" data-answer="A">
+      <span class="question-num">Q10</span>
+      <p class="question-text">一旦腿抽筋，以下哪項是最有效的緩解方法？</p>
       <div class="options">
-        <label class="option-label"><input type="radio" name="q33" value="1">① 吃香蕉</label>
-        <label class="option-label"><input type="radio" name="q33" value="2">② 多喝水</label>
-        <label class="option-label"><input type="radio" name="q33" value="3">③ 選擇較重的蛙鞋</label>
-        <label class="option-label"><input type="radio" name="q33" value="4">④ 下水前先暖身</label>
+        <label class="option-label"><input type="radio" name="q10" value="A">　A. 抓住抽筋腿的蛙鞋前緣，在伸直腿的同時往你身體的方向拉。這會拉伸小腿肌肉</label>
+        <label class="option-label"><input type="radio" name="q10" value="B">　B. 換一種踢腿方法</label>
+        <label class="option-label"><input type="radio" name="q10" value="C">　C. 讓潛伴把你拖回船上或岸邊</label>
+        <label class="option-label"><input type="radio" name="q10" value="D">　D. 所有上述回答都不適合</label>
       </div>
     </div>
 
-    <div class="question" data-id="q34" data-type="single" data-answer="1">
-      <span class="question-num">Q34 / 單選</span>
-      <p class="question-text">當氣源發生故障時，應第一優先？</p>
+    <div class="question" data-id="q11" data-type="single" data-answer="C">
+      <span class="question-num">Q11</span>
+      <p class="question-text">在獨立緊急上升過程中，你應該規律性地停止上升，並嘗試通過你的調節器吸氣，因為：</p>
       <div class="options">
-        <label class="option-label"><input type="radio" name="q34" value="1">① 尋找潛伴</label>
-        <label class="option-label"><input type="radio" name="q34" value="2">② 尋找教練</label>
-        <label class="option-label"><input type="radio" name="q34" value="3">③ 緊急上升</label>
-        <label class="option-label"><input type="radio" name="q34" value="4">④ 卸除配重</label>
+        <label class="option-label"><input type="radio" name="q11" value="A">　A. 這樣做能降低患減壓病的風險</label>
+        <label class="option-label"><input type="radio" name="q11" value="B">　B. 這樣做可以降低肺部過壓損傷的風險</label>
+        <label class="option-label"><input type="radio" name="q11" value="C">　C. 當壓力降低時，你的調節器可能開始工作，即使調節器在水較深時不能正常工作</label>
+        <label class="option-label"><input type="radio" name="q11" value="D">　D. 你的氣瓶裡的空氣會在上升時膨脹，讓你能呼吸</label>
       </div>
     </div>
 
-    <div class="question" data-id="q35" data-type="single" data-answer="1">
-      <span class="question-num">Q35 / 單選</span>
-      <p class="question-text">若潛水過程意外嗆水不適，應？</p>
+    <div class="question" data-id="q12" data-type="single" data-answer="D">
+      <span class="question-num">Q12</span>
+      <p class="question-text">在水面上穿上你的水肺裝備最好方法是：</p>
       <div class="options">
-        <label class="option-label"><input type="radio" name="q35" value="1">① 捏住鼻子保持用嘴呼吸</label>
-        <label class="option-label"><input type="radio" name="q35" value="2">② 脫掉面鏡</label>
-        <label class="option-label"><input type="radio" name="q35" value="3">③ 閉氣快速回到水面</label>
-        <label class="option-label"><input type="radio" name="q35" value="4">④ 壓住排水鈕</label>
+        <label class="option-label"><input type="radio" name="q12" value="A">　A. 把它放在你的頭上</label>
+        <label class="option-label"><input type="radio" name="q12" value="B">　B. 像穿夾克那樣穿上</label>
+        <label class="option-label"><input type="radio" name="q12" value="C">　C. 坐在它上面</label>
+        <label class="option-label"><input type="radio" name="q12" value="D">　D. 第二個和第三個答案都是正確的</label>
       </div>
     </div>
+
+    <div class="question" data-id="q13" data-type="single" data-answer="C">
+      <span class="question-num">Q13</span>
+      <p class="question-text">哪種類型的備用氣源不一定要求供氣者放棄他的主用二級頭？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q13" value="A">　A. 技術潛水配置</label>
+        <label class="option-label"><input type="radio" name="q13" value="B">　B. 備用氣源充氣閥</label>
+        <label class="option-label"><input type="radio" name="q13" value="C">　C. 傳統備用二級頭</label>
+        <label class="option-label"><input type="radio" name="q13" value="D">　D. 所有上述回答都不適合</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q14" data-type="single" data-answer="D">
+      <span class="question-num">Q14</span>
+      <p class="question-text">正確運用自由式踢腿的關鍵點包括：</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q14" value="A">　A. 盡可能保持膝蓋伸直</label>
+        <label class="option-label"><input type="radio" name="q14" value="B">　B. 模仿你騎腳踏車時的腿部動作</label>
+        <label class="option-label"><input type="radio" name="q14" value="C">　C. 保持你的腳尖繃直</label>
+        <label class="option-label"><input type="radio" name="q14" value="D">　D. 第一個和第三個答案都是正確的</label>
+      </div>
+    </div>
+
   </div>
 
-  <!-- 8. 減壓理論 -->
   <div class="section">
     <div class="section-header">
-      <div class="section-icon">📊</div>
-      <span class="section-title">減壓理論</span>
-      <span class="section-score">5 題</span>
+      <div class="section-icon">🤿</div>
+      <span class="section-title">BC 與浮力控制</span>
+      <span class="section-score">6 題</span>
     </div>
 
-    <!-- Q36 填空 -->
-    <div class="question" data-id="q36" data-type="fill" data-answers='["10"]'>
-      <span class="question-num">Q36 / 填空</span>
-      <div class="fill-group">
-        <span>使用一般空氣時，在深度</span>
-        <input class="fill-in" data-idx="0" placeholder="??">
-        <span>米以內的潛水，可以不用考慮減壓問題待多久都可以直接回到水面。</span>
-      </div>
-    </div>
-
-    <!-- Q37 填空 -->
-    <div class="question" data-id="q37" data-type="fill" data-answers='["1.185"]'>
-      <span class="question-num">Q37 / 填空</span>
-      <div class="fill-group">
-        <span>水深五米處，呼吸空氣之氮分壓為</span>
-        <input class="fill-in" data-idx="0" placeholder="???" style="width:90px">
-        <span>Bar。（提示：1.5 × 0.79）</span>
-      </div>
-    </div>
-
-    <!-- Q38 -->
-    <div class="question" data-id="q38" data-type="single" data-answer="3">
-      <span class="question-num">Q38 / 單選</span>
-      <p class="question-text">執行免減壓潛水（NDL）的必要工具為？</p>
+    <div class="question" data-id="q15" data-type="single" data-answer="B">
+      <span class="question-num">Q15</span>
+      <p class="question-text">在水下使用 BC 幫助維持中性浮力的關鍵點包括：</p>
       <div class="options">
-        <label class="option-label"><input type="radio" name="q38" value="1">① NOAA 免減壓空氣潛水計劃表</label>
-        <label class="option-label"><input type="radio" name="q38" value="2">② 深度計和計時潛水錶</label>
-        <label class="option-label"><input type="radio" name="q38" value="3">③ 潛水電腦錶</label>
-        <label class="option-label"><input type="radio" name="q38" value="4">④ 以上皆是</label>
+        <label class="option-label"><input type="radio" name="q15" value="A">　A. 對 BC 充氣或排氣時，僅使用較大幅度，直到你對這個過程有了更直觀的經驗</label>
+        <label class="option-label"><input type="radio" name="q15" value="B">　B. 為了良好地保持中性浮力，你必須感知到深度的變化，並保持一隻手在充氣閥上，預備給 BC 充氣或排氣</label>
+        <label class="option-label"><input type="radio" name="q15" value="C">　C. 在你能保持中性浮力之前，必須先在泳池底部做蛙鞋旋軸法練習</label>
+        <label class="option-label"><input type="radio" name="q15" value="D">　D. 所有上述回答都不適合</label>
       </div>
     </div>
 
-    <!-- Q39 -->
-    <div class="question" data-id="q39" data-type="single" data-answer="4">
-      <span class="question-num">Q39 / 單選</span>
-      <p class="question-text">SDI 建議上升速率應保持在每分鐘 9 米以下，下列何者是最有效控制上升速度的方法？</p>
+    <div class="question" data-id="q16" data-type="single" data-answer="C">
+      <span class="question-num">Q16</span>
+      <p class="question-text">如果你能控制自己的浮力，你應該能在以下哪個狀態保持懸浮</p>
       <div class="options">
-        <label class="option-label"><input type="radio" name="q39" value="1">① 觀察最微小氣泡的上升速度</label>
-        <label class="option-label"><input type="radio" name="q39" value="2">② 深度計和計時潛水錶</label>
-        <label class="option-label"><input type="radio" name="q39" value="3">③ 觀察潛伴</label>
-        <label class="option-label"><input type="radio" name="q39" value="4">④ 潛水電腦錶</label>
+        <label class="option-label"><input type="radio" name="q16" value="A">　A. 給 BC 充一下氣</label>
+        <label class="option-label"><input type="radio" name="q16" value="B">　B. 深吸氣</label>
+        <label class="option-label"><input type="radio" name="q16" value="C">　C. 不踢動或移動</label>
+        <label class="option-label"><input type="radio" name="q16" value="D">　D. 第一個和第二個答案都是正確的</label>
       </div>
     </div>
 
-    <!-- Q40 -->
-    <div class="question" data-id="q40" data-type="single" data-answer="3">
-      <span class="question-num">Q40 / 單選</span>
-      <p class="question-text">如不慎超出了免減壓時間的限制，應如何處置？</p>
+    <div class="question" data-id="q17" data-type="single" data-answer="B">
+      <span class="question-num">Q17</span>
+      <p class="question-text">使用循管法找回二級頭的關鍵點包括：</p>
       <div class="options">
-        <label class="option-label"><input type="radio" name="q40" value="1">① 停止潛水立即回到水面</label>
-        <label class="option-label"><input type="radio" name="q40" value="2">② 無需理會</label>
-        <label class="option-label"><input type="radio" name="q40" value="3">③ 依電腦錶指示在指定深度停留一定時間</label>
-        <label class="option-label"><input type="radio" name="q40" value="4">④ 回到岸上吸純氧，再送醫</label>
+        <label class="option-label"><input type="radio" name="q17" value="A">　A. 用右手托起氣瓶底部</label>
+        <label class="option-label"><input type="radio" name="q17" value="B">　B. 你向右傾，右肩放低</label>
+        <label class="option-label"><input type="radio" name="q17" value="C">　C. 你向左傾，左肩放低</label>
+        <label class="option-label"><input type="radio" name="q17" value="D">　D. 所有上述回答都不適合</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q18" data-type="single" data-answer="B">
+      <span class="question-num">Q18</span>
+      <p class="question-text">在水下時，每當把調節器從嘴裡拿出時，你應該：</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q18" value="A">　A. 憋氣以保持你現有的空氣</label>
+        <label class="option-label"><input type="radio" name="q18" value="B">　B. 呼出一小串穩定的氣泡</label>
+        <label class="option-label"><input type="radio" name="q18" value="C">　C. 用力呼氣來排出你肺裡的空氣</label>
+        <label class="option-label"><input type="radio" name="q18" value="D">　D. 所有上述回答都不適合</label>
       </div>
     </div>
   </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">⚙️</div>
+      <span class="section-title">裝備操作</span>
+      <span class="section-score">8 題</span>
+    </div>
+
+    <div class="question" data-id="q19" data-type="single" data-answer="C">
+      <span class="question-num">Q19</span>
+      <p class="question-text">把調節器從氣瓶上取下後，如果要清洗，則必須把____________放回原位固定好。</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q19" value="A">　A. 咬嘴塞</label>
+        <label class="option-label"><input type="radio" name="q19" value="B">　B. 備用氣源固定器</label>
+        <label class="option-label"><input type="radio" name="q19" value="C">　C. 防塵蓋</label>
+        <label class="option-label"><input type="radio" name="q19" value="D">　D. 所有上述回答都不適合</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q20" data-type="single" data-answer="A">
+      <span class="question-num">Q20</span>
+      <p class="question-text">在使用水肺裝備呼吸時有效利用空氣的關鍵是：</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q20" value="A">　A. 緩慢的深呼吸</label>
+        <label class="option-label"><input type="radio" name="q20" value="B">　B. 在兩次吸氣之間短暫地憋氣</label>
+        <label class="option-label"><input type="radio" name="q20" value="C">　C. 快速呼吸，只做淺呼吸</label>
+        <label class="option-label"><input type="radio" name="q20" value="D">　D. 所有上述回答都不適合</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q21" data-type="single" data-answer="D">
+      <span class="question-num">Q21</span>
+      <p class="question-text">不允許哪個裝備自由懸垂？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q21" value="A">　A. 備用二級頭</label>
+        <label class="option-label"><input type="radio" name="q21" value="B">　B. BC 充氣閥</label>
+        <label class="option-label"><input type="radio" name="q21" value="C">　C. 潛水殘壓錶或儀錶組</label>
+        <label class="option-label"><input type="radio" name="q21" value="D">　D. 第一個和第三個答案都是正確的</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q22" data-type="single" data-answer="C">
+      <span class="question-num">Q22</span>
+      <p class="question-text">在你的潛伴檢查你的氣源是否完全打開後：</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q22" value="A">　A. 你已準備好入水</label>
+        <label class="option-label"><input type="radio" name="q22" value="B">　B. 向後伸手，自己再次檢查它</label>
+        <label class="option-label"><input type="radio" name="q22" value="C">　C. 從你的調節器深吸幾口氣，同時注視你的殘壓錶的壓力變化</label>
+        <label class="option-label"><input type="radio" name="q22" value="D">　D. 所有上述回答都不適合</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q23" data-type="single" data-answer="A">
+      <span class="question-num">Q23</span>
+      <p class="question-text">潛水刀或切割工具可用於：</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q23" value="A">　A. 幫助被纏住的潛水員脫身</label>
+        <label class="option-label"><input type="radio" name="q23" value="B">　B. 抵禦危險的海洋生物</label>
+        <label class="option-label"><input type="radio" name="q23" value="C">　C. 在水下發出訊號，用它來敲擊圓柱體</label>
+        <label class="option-label"><input type="radio" name="q23" value="D">　D. 第二個和第三個答案都是正確的</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q24" data-type="single" data-answer="D">
+      <span class="question-num">Q24</span>
+      <p class="question-text">潛水員喜歡電腦錶超過潛水計畫表的原因包括：</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q24" value="A">　A. 電腦錶即時反應了大多數潛水的多層深度特性，因此，容許較長的免減壓極限</label>
+        <label class="option-label"><input type="radio" name="q24" value="B">　B. 電腦錶通常比潛水計畫表更便於使用</label>
+        <label class="option-label"><input type="radio" name="q24" value="C">　C. 電腦錶是控制上升速度的最好方法之一</label>
+        <label class="option-label"><input type="radio" name="q24" value="D">　D. 所有上述回答</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q25" data-type="single" data-answer="D">
+      <span class="question-num">Q25</span>
+      <p class="question-text">調節器系統可能包括：</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q25" value="A">　A. 一個一級頭和一個主二級頭</label>
+        <label class="option-label"><input type="radio" name="q25" value="B">　B. 一個備用二級頭（或連接至 BC 上的備用氣源充氣器）</label>
+        <label class="option-label"><input type="radio" name="q25" value="C">　C. 殘壓錶（SPG）通常是控制儀錶組的一部分</label>
+        <label class="option-label"><input type="radio" name="q25" value="D">　D. 所有上述回答</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🔧</div>
+      <span class="section-title">潛水裝備知識</span>
+      <span class="section-score">11 題</span>
+    </div>
+
+    <div class="question" data-id="q26" data-type="single" data-answer="B">
+      <span class="question-num">Q26</span>
+      <p class="question-text">一些備用氣源與_________相結合，以減少連接到一級頭的軟管數量。</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q26" value="A">　A. 輪胎充氣機</label>
+        <label class="option-label"><input type="radio" name="q26" value="B">　B. BCD充排氣閥</label>
+        <label class="option-label"><input type="radio" name="q26" value="C">　C. 呼吸管</label>
+        <label class="option-label"><input type="radio" name="q26" value="D">　D. 殘壓錶</label>
+      </div>
+    </div>
+
+
+    <div class="question" data-id="q27" data-type="single" data-answer="D">
+      <span class="question-num">Q27</span>
+      <p class="question-text">常見的配置系統包括：</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q27" value="A">　A. 配重帶</label>
+        <label class="option-label"><input type="radio" name="q27" value="B">　B. 具備整合式配重系統的 BC</label>
+        <label class="option-label"><input type="radio" name="q27" value="C">　C. 永久有重物固定在底部的氣瓶</label>
+        <label class="option-label"><input type="radio" name="q27" value="D">　D. 第一個和第二個答案都是正確的</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q28" data-type="single" data-answer="C">
+      <span class="question-num">Q28</span>
+      <p class="question-text">面鏡必須蓋住鼻子：</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q28" value="A">　A. 防止水進入</label>
+        <label class="option-label"><input type="radio" name="q28" value="B">　B. 以確保最佳密合</label>
+        <label class="option-label"><input type="radio" name="q28" value="C">　C. 這樣你就可以保持面鏡內的壓力等同於外界的壓力</label>
+        <label class="option-label"><input type="radio" name="q28" value="D">　D. 第一個和第二個答案都是正確的</label>
+      </div>
+    </div>
+
+
+    <div class="question" data-id="q29" data-type="single" data-answer="D">
+      <span class="question-num">Q29</span>
+      <p class="question-text">用淡水沖洗裝備有助於清除：</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q29" value="A">　A. 鹽</label>
+        <label class="option-label"><input type="radio" name="q29" value="B">　B. 氯</label>
+        <label class="option-label"><input type="radio" name="q29" value="C">　C. 沙子、污泥和其他沉積物</label>
+        <label class="option-label"><input type="radio" name="q29" value="D">　D. 所有上述回答</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q30" data-type="single" data-answer="C">
+      <span class="question-num">Q30</span>
+      <p class="question-text">以下所有措施都有助於預防減壓病（DCS），除了：</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q30" value="A">　A. 在 3-6 公尺/ 10-20 英呎處，做 3-5 分鐘的安全停留</label>
+        <label class="option-label"><input type="radio" name="q30" value="B">　B. 完全遵守你的潛水電腦錶的免減壓極限，並保留安全餘量</label>
+        <label class="option-label"><input type="radio" name="q30" value="C">　C. 潛水前不要喝飲料</label>
+        <label class="option-label"><input type="radio" name="q30" value="D">　D. 上升速度不超過潛水電腦錶允許的速度</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q31" data-type="single" data-answer="D">
+      <span class="question-num">Q31</span>
+      <p class="question-text">導致減壓病因素包括：</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q31" value="A">　A. 快速上浮</label>
+        <label class="option-label"><input type="radio" name="q31" value="B">　B. 超過你的電腦錶的免減壓極限</label>
+        <label class="option-label"><input type="radio" name="q31" value="C">　C. 過度疲勞且/或脫水</label>
+        <label class="option-label"><input type="radio" name="q31" value="D">　D. 所有上述回答</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q32" data-type="single" data-answer="B">
+      <span class="question-num">Q32</span>
+      <p class="question-text">下面哪一個回答是預防或降低氮醉的最好方法？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q32" value="A">　A. 避免不必要的疲勞，因為二氧化碳含量升高會加劇氮醉</label>
+        <label class="option-label"><input type="radio" name="q32" value="B">　B. 避免在 20 米/66 英尺以下深度潛水</label>
+        <label class="option-label"><input type="radio" name="q32" value="C">　C. 使用乾衣，因為寒冷會增加氮醉的風險</label>
+        <label class="option-label"><input type="radio" name="q32" value="D">　D. 第一個和第三個答案都是正確的</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🏥</div>
+      <span class="section-title">潛水醫學與海洋生物</span>
+      <span class="section-score">6 題</span>
+    </div>
+
+    <div class="question" data-id="q33" data-type="single" data-answer="D">
+      <span class="question-num">Q33</span>
+      <p class="question-text">下面哪一項可以表明潛水氣瓶中的空氣被污染和有潛在的毒性？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q33" value="A">　A. 顏色</label>
+        <label class="option-label"><input type="radio" name="q33" value="B">　B. 氣味</label>
+        <label class="option-label"><input type="radio" name="q33" value="C">　C. 味道</label>
+        <label class="option-label"><input type="radio" name="q33" value="D">　D. 所有上述回答皆正確</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q34" data-type="single" data-answer="B">
+      <span class="question-num">Q34</span>
+      <p class="question-text">如果你在下潛時感到疼痛或不舒服時：</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q34" value="A">　A. 停下來，保持在當前位置，努力做耳壓平衡，直到耳朵感覺正常為止</label>
+        <label class="option-label"><input type="radio" name="q34" value="B">　B. 上升到你可以輕鬆地做耳壓平衡的高度，只有在那時，你才可以繼續下降</label>
+        <label class="option-label"><input type="radio" name="q34" value="C">　C. 中止潛水並諮詢醫生</label>
+        <label class="option-label"><input type="radio" name="q34" value="D">　D. 記住疼痛出現時的深度，並在潛水結束時在該深度做安全停留</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q35" data-type="single" data-answer="A">
+      <span class="question-num">Q35</span>
+      <p class="question-text">以下何者不正確</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q35" value="A">　A. 在上升過程中時不時向面鏡中呼氣，有助於防止面鏡壓擠</label>
+        <label class="option-label"><input type="radio" name="q35" value="B">　B. 定期進行牙科護理並確保牙齒中沒有氣體空隙，有助於防止牙齒壓擠</label>
+        <label class="option-label"><input type="radio" name="q35" value="C">　C. 如果遇到逆向阻塞，立即下潛到疼痛可以緩解的深度，然後緩慢上升，同時搖動下巴並做吞嚥動作</label>
+        <label class="option-label"><input type="radio" name="q35" value="D">　D. 服用減充血劑的危險在於，藥效可能在潛水過程中逐漸退去，並有其他可能的副作用</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q36" data-type="single" data-answer="B">
+      <span class="question-num">Q36</span>
+      <p class="question-text">在任何時候，當你不能吸氣時（例如調節器從嘴巴掉出來），你必須：</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q36" value="A">　A. 憋氣以保持你現有的空氣</label>
+        <label class="option-label"><input type="radio" name="q36" value="B">　B. 呼氣</label>
+        <label class="option-label"><input type="radio" name="q36" value="C">　C. 監看你的深度，以避免意外上升時憋氣</label>
+        <label class="option-label"><input type="radio" name="q36" value="D">　D. 第一個和第三個答案都是正確的</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q37" data-type="single" data-answer="B">
+      <span class="question-num">Q37</span>
+      <p class="question-text">下面的哪一個或哪幾個說法是正確的？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q37" value="A">　A. 湧浪是波浪在海岸上被擊碎引起的逆流</label>
+        <label class="option-label"><input type="radio" name="q37" value="B">　B. 湧浪是波浪越過潛水員頭部之上引起的海水的前後湧動</label>
+        <label class="option-label"><input type="radio" name="q37" value="C">　C. 當波浪穿過相對的岩石壁之間時出現</label>
+        <label class="option-label"><input type="radio" name="q37" value="D">　D. 所有上述回答都不適合</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q38" data-type="single" data-answer="C">
+      <span class="question-num">Q38</span>
+      <p class="question-text">_________浮力狀態物體會上浮；__________浮力狀態物體會下沉；僅有__________浮力狀態的物體不下沉也不上浮。</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q38" value="A">　A. 負，中性，正</label>
+        <label class="option-label"><input type="radio" name="q38" value="B">　B. 正，中性，負</label>
+        <label class="option-label"><input type="radio" name="q38" value="C">　C. 正，負，中性</label>
+        <label class="option-label"><input type="radio" name="q38" value="D">　D. 所有上述回答都不適合</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🔵</div>
+      <span class="section-title">氣瓶與水文知識</span>
+      <span class="section-score">4 題</span>
+    </div>
+
+    <div class="question" data-id="q39" data-type="single" data-answer="B">
+      <span class="question-num">Q39</span>
+      <p class="question-text">通常在水面能用一小時的一支水肺氣瓶在 20 公尺/ 66 英呎的深度將可使用_______分鐘。</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q39" value="A">　A. 30</label>
+        <label class="option-label"><input type="radio" name="q39" value="B">　B. 20</label>
+        <label class="option-label"><input type="radio" name="q39" value="C">　C. 15</label>
+        <label class="option-label"><input type="radio" name="q39" value="D">　D. 10</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q40" data-type="single" data-answer="C">
+      <span class="question-num">Q40</span>
+      <p class="question-text">下面的哪一個或哪幾個說法是正確的？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q40" value="A">　A. 潮汐很少對水的深度或潛水計劃有巨大影響</label>
+        <label class="option-label"><input type="radio" name="q40" value="B">　B. 強勁的潮汐洋流常常帶來更潔淨的水</label>
+        <label class="option-label"><input type="radio" name="q40" value="C">　C. 潮流可能會非常強勁，讓潛水變得非常困難，甚至危險</label>
+        <label class="option-label"><input type="radio" name="q40" value="D">　D. 所有上述回答都不適合</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q41" data-type="single" data-answer="A">
+      <span class="question-num">Q41</span>
+      <p class="question-text">下面的哪一個說法不正確？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q41" value="A">　A. 沿岸流總是沿著同樣的方向流動</label>
+        <label class="option-label"><input type="radio" name="q41" value="B">　B. 風、波浪和潮汐是影響沿岸流方向的因素</label>
+        <label class="option-label"><input type="radio" name="q41" value="C">　C. 沿岸流常常沿著與永久性岸邊洋流同樣的方向流動</label>
+        <label class="option-label"><input type="radio" name="q41" value="D">　D. 你可以詢問當地潛水業者有關沿岸流的規律</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q42" data-type="single" data-answer="C">
+      <span class="question-num">Q42</span>
+      <p class="question-text">下面的哪一個或哪幾個說法是正確的？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q42" value="A">　A. 如果遇到離岸流，用你最大的力氣踢水直接游向岸邊</label>
+        <label class="option-label"><input type="radio" name="q42" value="B">　B. 如果遇到離岸流，垂直於海岸游，直到完全脫離離岸流，然後游向海岸</label>
+        <label class="option-label"><input type="radio" name="q42" value="C">　C. 如果遇到離岸流，平行於岸邊游，直到你完全脫離離岸流，然後游向岸邊</label>
+        <label class="option-label"><input type="radio" name="q42" value="D">　D. 不要奮力游出離岸流；放鬆，讓它把你帶向岸邊</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🌊</div>
+      <span class="section-title">水下物理與環境</span>
+      <span class="section-score">13 題</span>
+    </div>
+
+    <div class="question" data-id="q43" data-type="single" data-answer="C">
+      <span class="question-num">Q43</span>
+      <p class="question-text">在水下的物體顯得：</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q43" value="A">　A. 和在陸地上的大小一樣</label>
+        <label class="option-label"><input type="radio" name="q43" value="B">　B. 是在陸地上時的尺寸的兩倍</label>
+        <label class="option-label"><input type="radio" name="q43" value="C">　C. 比在陸地上近，而且大</label>
+        <label class="option-label"><input type="radio" name="q43" value="D">　D. 比在陸地上遠，而且小</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q44" data-type="single" data-answer="D">
+      <span class="question-num">Q44</span>
+      <p class="question-text">在你下潛時：</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q44" value="A">　A. 色彩基本不發生變化</label>
+        <label class="option-label"><input type="radio" name="q44" value="B">　B. 藍色和灰色很快消失</label>
+        <label class="option-label"><input type="radio" name="q44" value="C">　C. 潛水燈對物體外觀顏色的影響很小</label>
+        <label class="option-label"><input type="radio" name="q44" value="D">　D. 所有上述回答都不適合</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q45" data-type="single" data-answer="D">
+      <span class="question-num">Q45</span>
+      <p class="question-text">下面的哪一個或哪幾個說法是正確的？可能有一個以上的正確答案。</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q45" value="A">　A. 水的密度比空氣密度大 400 倍</label>
+        <label class="option-label"><input type="radio" name="q45" value="B">　B. 水的密度比空氣密度大 800 倍</label>
+        <label class="option-label"><input type="radio" name="q45" value="C">　C. 聲音在水中傳播的速度約快 4 倍</label>
+        <label class="option-label"><input type="radio" name="q45" value="D">　D. 第二個和第三個答案都是正確的</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q46" data-type="single" data-answer="B">
+      <span class="question-num">Q46</span>
+      <p class="question-text">下面的哪一個或哪幾個說法是正確的？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q46" value="A">　A. 水從你的身體上帶走熱量的速度比在空氣快 10 倍</label>
+        <label class="option-label"><input type="radio" name="q46" value="B">　B. 水從你的身體上帶走熱量的速度比在空氣快 25 倍</label>
+        <label class="option-label"><input type="radio" name="q46" value="C">　C. 淡水從你的身體上帶走熱量的速度比海水快</label>
+        <label class="option-label"><input type="radio" name="q46" value="D">　D. 海水從你的身體上帶走熱量的速度比淡水快</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q47" data-type="single" data-answer="C">
+      <span class="question-num">Q47</span>
+      <p class="question-text">如果你和潛伴在潛水過程中分散了，你們應該做什麼？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q47" value="A">　A. 繼續獨自前往約定好的出水點</label>
+        <label class="option-label"><input type="radio" name="q47" value="B">　B. 找一個新的潛伴</label>
+        <label class="option-label"><input type="radio" name="q47" value="C">　C. 立即開始他們預先擬定的互相尋找的計劃</label>
+        <label class="option-label"><input type="radio" name="q47" value="D">　D. 搜索不超過三分鐘，然後獨自繼續</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q48" data-type="single" data-answer="D">
+      <span class="question-num">Q48</span>
+      <p class="question-text">最常用來製造水肺氣瓶的材料包括：</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q48" value="A">　A. 鋁</label>
+        <label class="option-label"><input type="radio" name="q48" value="B">　B. 鈦</label>
+        <label class="option-label"><input type="radio" name="q48" value="C">　C. 鋼</label>
+        <label class="option-label"><input type="radio" name="q48" value="D">　D. 第一個和第三個答案都是正確的</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q49" data-type="single" data-answer="B">
+      <span class="question-num">Q49</span>
+      <p class="question-text">下面哪幾個說法是正確的？</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q49" value="A">　A. 水生動物給潛水員帶來的風險比任何其他因素都大</label>
+        <label class="option-label"><input type="radio" name="q49" value="B">　B. 大多數水生動物咬傷人是由於它們對預感到威脅的防禦反應，或者在極少數情況下，由於錯誤身份認知</label>
+        <label class="option-label"><input type="radio" name="q49" value="C">　C. 因為男性被認為更具攻擊性，男性比女性更容易成為水生動物攻擊的受害者</label>
+        <label class="option-label"><input type="radio" name="q49" value="D">　D. 所有上述回答都不適合</label>
+      </div>
+    </div>
+
+    <div class="question" data-id="q50" data-type="single" data-answer="D">
+      <span class="question-num">Q50</span>
+      <p class="question-text">如果你被有毒刺的動物傷到了，你一定是：</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q50" value="A">　A. 在距離它們半徑 3 公尺/ 10 英呎以內，因為大多數有毒動物的鰭刺不能伸得比這更遠</label>
+        <label class="option-label"><input type="radio" name="q50" value="B">　B. 如果你被它們傷到了，你肯定是惹著和觸碰它們了</label>
+        <label class="option-label"><input type="radio" name="q50" value="C">　C. 沒戴手套，因為大多數的刺都無法穿刺手套</label>
+        <label class="option-label"><input type="radio" name="q50" value="D">　D. 所有上述回答都不適合</label>
+      </div>
+    </div>
+
+  </div>
+
 
 </main>
 
@@ -1338,7 +1427,7 @@
           <strong id="wrong-count">0</strong>答錯題數
         </div>
         <div class="sc-total">
-          <strong>40</strong>總題數
+          <strong>50</strong>總題數
         </div>
       </div>
     </div>
@@ -1407,48 +1496,72 @@
   }
 
   // ── Answer explanations ──
-  const explanations = {
-    q1: '空氣組成：氧氣約 21%，氮氣約 79%，其餘為微量氣體。',
-    q2: '紅色光波長最長，穿透水的能力最弱，因此在下潛時最先消失。',
-    q3: '農曆初一、十五（朔望月）時潮差最大，端午節（五月初五）、中秋節（八月十五）、春節（正月初一）、元宵節（正月十五）皆符合。',
-    q4: '海浪主要由風所形成，風對海面施力產生波浪。',
-    q5: '25米海水中，環境壓力 = 1 ATA（大氣壓）+ 2.5 ATA（水壓）= 3.5 ATA。',
-    q6: '水的特性：視覺放大約 33%；聲音傳播速度約為空氣的 4 倍；熱傳導係數約為空氣的 25 倍。',
-    q7: '依亨利定律，壓力越大，氣體溶入液體的量越多，速率也越快。',
-    q8: '應於開始下潛時即開始做耳壓平衡，在壓力變化之初就預防，等耳朵痛才做已太晚。',
-    q9: '殘氮在體內時，抽煙（一氧化碳）、喝酒（血管擴張）、泡溫泉（加速氣泡形成）、搭飛機（氣壓降低）皆會提高減壓症風險。',
-    q10: '潛次不同、氮氣殘留量各異，最安全的方式是依潛水電腦錶顯示的無飛行時間為準。固定的小時數僅是最低限，電腦錶能依實際潛水深度與時間給出個人化建議。',
-    q11: '感冒導致鼻腔、鼻竇、額竇皆充血腫脹，耳壓平衡困難，以上皆是原因。',
-    q12: '暈眩原因包括耳壓不平衡、冷水進入中耳（熱量不平衡刺激前庭）、海浪等；「潛太深」本身不直接造成暈眩。',
-    q13: '抽煙喝酒會影響血液循環、增加血液黏稠度，提高減壓症風險；充足睡眠、多喝水、足夠休息是降低風險的方法。',
-    q14: '三個選項皆可減少殘氮影響：不要在深處停留太久可減少吸氮量、足夠水面休息可讓氮氣排出、高氧可降低氮氣比例。',
-    q15: '30 米以深氮氣分壓超過 3 Bar 時，氮醉效應明顯，因此即便已取得深潛資格，建議深度仍為 30 米。',
-    q16: '深吸慢吐可充分換氣、維持穩定呼吸，減少 CO₂ 累積，是水肺潛水的標準呼吸法。',
-    q17: '面鏡擠壓是因內外壓差，下潛時用鼻子微量吐氣入面鏡可平衡壓力。',
-    q18: '下潛時需充氣以增加浮力抵抗下沉；上升時需洩氣以避免過度上升失控。',
-    q19: '中性浮力能讓潛水員在水中穩定懸浮，不碰觸珊瑚礁，是最重要的保護技能。',
-    q20: '閉氣上升是最危險的行為，上升過程中氣體膨脹可能導致肺過度擴張傷（AGE），必須完全禁止。',
-    q21: '調節器是維生設備，供氣是否穩定、呼吸阻抗是否低才是最重要的選擇依據。',
-    q22: '保養周期應以製造商建議為準，不同品牌零件壽命不同，無法統一規定次數或年限。',
-    q23: '通風陰涼處可防止橡膠老化、金屬腐蝕。防潮箱反而可能造成橡膠件加速老化。',
-    q24: '潛水電腦錶會持續計算體內累積氮量，是重覆潛水管理殘氮的必備工具。',
-    q25: '出水後面鏡應放入 BCD 口袋（安全收納）。頭頂雖然常見，但容易掉落或受損；蛙鞋和脖子都是錯誤位置。',
-    q26: '依潛水計劃原則：先深後淺，先在最深點潛（18 米的 A），後到較淺處（11 米的 B）。',
-    q27: '「依一分鐘不超過9米速度上升，並在五米做安全停留後回水面」這個描述有誤——正確的潛伴遺失程序是在原深度搜尋一分鐘，若未找到再依正常上升速率（不是緊急上升）回到水面等待。',
-    q28: '100 Bar 是通用的「預留返航殘壓」，也稱為安全殘壓底線。',
-    q29: '資深與資淺搭配可讓有經驗者協助新手，是最安全有效的潛伴分配方式。',
-    q30: 'SDI 規定進階開放水域潛水員課程需有 25 次潛水紀錄。',
-    q31: '獅子魚的毒素為蛋白質性毒素，遇熱會分解失活，因此泡熱水（約 43-45°C）是正確處置方式。',
-    q32: '水母毒素為蛋白質，泡 40~45°C 熱水可使毒素變性失活，是目前最安全的通用處置。醋僅適用於特定種類（如箱型水母），台灣常見的僧帽水母用醋反而會促使毒素二次釋放，因此不建議作為通用急救方式。',
-    q33: '較重的蛙鞋反而增加腿部負擔，更容易造成抽筋。預防抽筋應補充電解質（吃香蕉）、保持水分和充分暖身。',
-    q34: '氣源故障時第一優先是尋找潛伴，共用潛伴的備用氣源（章魚頭）後共同上升。',
-    q35: '嗆水時應捏住鼻子改以嘴呼吸，防止水繼續進入。切忌閉氣上升（危險）或脫掉面鏡。',
-    q36: '10 米處壓力為 2 ATA，2 × 1.58 = 3.16 ATA > 環境壓力 2 ATA 的任何深度皆安全，因此 10 米以內不需考慮減壓停留。',
-    q37: '5 米處壓力 = 1.5 ATA，氮氣佔 79%，故氮分壓 = 1.5 × 0.79 = 1.185 Bar。',
-    q38: '潛水電腦錶是執行免減壓潛水最直接的必要工具，能即時計算 NDL 剩餘時間及深度，是現代潛水的標準配備。',
-    q39: '潛水電腦錶內建演算法可即時顯示上升速率，是最精確、最即時的控速工具。',
-    q40: '一旦超出 NDL，必須依電腦錶指示進行減壓停留，讓多餘的氮氣安全排出，不可擅自上升。',
-  };
+    const explanations = {
+    q1: '若無適當訓練，獨自搜索失踪潛伴會讓自己陷入危險，水下搜索應留給訓練有素的專業人員。',
+    q2: '盯著地平線和避開柴油煙霧等強烈氣味都能有效預防暈船；出發前吃大餐反而可能加重症狀。',
+    q3: '懷疑減壓病時應同時啟動 EMS 並聯絡 DAN；自行送往減壓艙可能延誤緊急處置。',
+    q4: '水面問題管理的首要法則是建立正浮力，讓自己能漂浮後再處理其他問題。',
+    q5: '重複潛水中電腦錶會計算體內殘留氮氣，因此提供比單次潛水更保守（更短）的免減壓極限。',
+    q6: '無法完成減壓停留時，三件事都應做：吸純氧、觀察症狀 24 小時、24 小時內不潛水或飛行。',
+    q7: '任何潛水員基於任何原因都可以發出中止潛水的信號，潛伴必須尊重這個決定。',
+    q8: '吸菸會影響肺功能和血液循環，對潛水有明顯不利影響；視力受損通常可透過面鏡矯正。',
+    q9: '自然導航是最常用的方式，利用海底地形、珊瑚礁形狀、陽光方向等自然特徵定向。',
+    q9: '永遠在訓練、裝備、經驗三個維度的極限之內潛水，三者缺一不可。',
+    q10: '抓住蛙鞋前緣向身體方向拉、同時伸直腿，可有效拉伸小腿肌肉解除抽筋。',
+    q11: '調節器在深水因壓力過大可能無法正常供氣，但隨著上升壓力減小後它可能恢復工作。',
+    q12: '在水面穿裝備的最佳方式是像穿夾克或坐在裝備上，避免在水中奮力穿戴。',
+    q13: '傳統備用二級頭（章魚頭）讓耗盡空氣的潛水員可以呼吸，同時供氣者保留自己的主二級頭。',
+    q14: '自由式踢腿的兩個關鍵：膝蓋盡量伸直，以及腳尖繃直，才能有效推進。',
+    q15: '在緊急情況和小型潛水船出水時可能需要卸除配重；有控制坐式入水時不需要卸除。',
+    q15: '維持中性浮力的關鍵是感知深度變化，並以點按方式微調 BC 充排氣，而不是大幅度調整。',
+    q16: '真正掌握中性浮力的潛水員應該能夠在不踢動、不移動的情況下，靠呼吸控制懸浮在水中。',
+    q18: '配重檢查最準確的時機是潛水將近結束、到達安全停留深度時，此時氣瓶接近空、浮力已穩定。',
+    q17: '順管摸索法：向右傾、右肩放低，讓二級頭隨著管路自然落入右手可及之處。',
+    q20: '排水時不應拉開面鏡底部，這反而讓水進出一樣多；正確做法是壓面鏡頂部和兩側。',
+    q18: '調節器離口時應持續呼出一小串氣泡，防止水壓將水灌入；既不要憋氣也不要用力呼氣。',
+    q19: '清洗調節器前必須先將防塵蓋蓋回，防止水從高壓孔進入一級頭內部造成損壞。',
+    q20: '緩慢深呼吸可有效利用空氣，效率最高可達淺呼吸的四倍，是節省氣量的關鍵。',
+    q21: '備用二級頭和殘壓錶/儀錶組不允許自由垂懸，以防刮傷珊瑚或被海底物纏繞。',
+    q22: '潛伴確認氣源打開後，自己還需從調節器深吸幾口氣，同時觀察殘壓錶確認氣瓶真的是開的。',
+    q26: '船潛最佳入水方式應以船員推薦且最容易的方式為準，而非固定一種方法。',
+    q23: '潛水刀主要用於幫助被纏住的潛水員脫困，以及敲擊氣瓶發出訊號；不應用來攻擊海洋生物。',
+    q24: '電腦錶的三大優勢：多層次計算、易於使用、精確控制上升速度，三者都是潛水員偏好的原因。',
+    q25: '完整調節器系統包含一級頭、主二級頭、備用二級頭（或備用充氣閥）和殘壓錶，三項都正確。',
+    q26: '備用氣源充氣閥（Air II）將備用二級頭與 BCD充排氣閥整合，減少一條連接一級頭的軟管。',
+    q30: '正確的手套禦寒門檻約在攝氏 20 度，而非 10 度；大多數潛水員在 20 度以下就會開始戴手套。',
+    q28: '二氧化碳充氣機制（CO₂ 氣瓶）在 1980 年代初期後就已淘汰，不再是現代 BC 的標準配件。',
+    q27: '最常見的配重系統是配重帶和整合式配重 BC，永久固定重物在氣瓶底部並不是常見系統。',
+    q28: '面鏡必須蓋住鼻子，這樣才能向面鏡內吐氣進行耳壓平衡，使面鏡內壓力等同外界壓力。',
+    q34: '套腳式蛙鞋不適合冷水（無法加穿潛水靴）和有岩石的海濱入水；高階款可提供足夠推力。',
+    q29: '用淡水沖洗可清除鹽分（海水）、氯（游泳池水）以及沙子污泥等沉積物，三者都是正確的。',
+    q36: '即使在最溫暖的水中，有經驗的潛水員也建議穿至少 3mm 的連身防寒衣；說「25 度以上可不穿」是不正確的。',
+    q30: '潛水前不喝飲料（脫水）反而是危險因素！脫水會增加減壓症風險，應充分補水才是預防措施。',
+    q31: '快速上浮、超過 NDL、過度疲勞脫水都是導致減壓病的因素，三者都正確。',
+    q32: '避免在 20 米以下潛水是預防氮醉最直接有效的方法，氮醉隨深度增加而加重。',
+    q33: '污染空氣可能有顏色（油污）、氣味（一氧化碳等）或異味，三種都是判斷依據。',
+    q34: '下潛耳壓不適時，應先上升到可以輕鬆平衡的深度，再重新嘗試下潛；不應強撐繼續下潛。',
+    q35: '防止面鏡壓擠應在下潛時吐氣入面鏡；上升時面鏡內氣體會自然膨脹，不需要額外吐氣。',
+    q36: '調節器掉出時必須立即呼氣，防止因上升造成肺部過壓傷；絕對不可憋氣。',
+    q37: '湧浪（surge）是波浪越過潛水員頭部引起的前後湧動；涌浪和離岸流是不同的水文現象。',
+    q38: '正浮力上浮、負浮力下沉、中性浮力懸停——這是阿基米德浮力原理的基本應用。',
+    q39: '20 米深度壓力為 3 ATA（水面的 3 倍），耗氣量也是 3 倍；60 分鐘 ÷ 3 = 20 分鐘。',
+    q40: '潮流強度可以非常強大，讓潛水變得困難甚至危險；潮汐對潛水計劃也可能有巨大影響。',
+    q41: '沿岸流的方向受風、波浪和潮汐影響而改變，並非總是固定方向流動。',
+    q42: '遇到離岸流應平行海岸游，直到脫離後再游回岸邊；垂直向岸游或放鬆都是錯誤的。',
+    q43: '水的折射效果使水下物體看起來比實際更近（近 25%）且更大（大 1/3）。',
+    q44: '下潛時首先消失的是紅色等暖色系；藍色和灰色最後才消失；潛水燈可恢復顏色。選項 ABC 的說法都不正確。',
+    q45: '水的密度比空氣大 800 倍；聲音在水中傳播速度約快 4 倍，第一和第三答案都正確。',
+    q46: '水帶走熱量的速度比空氣快 25 倍；淡水和海水在帶走熱量的速度上差異不大。',
+    q56: '溫躍層以下水溫驟降，潛水員在深水處需要比水面更多的保溫保護。',
+    q57: '浪高從浪尖到浪谷，浪長從浪尖到浪尖，兩者都正確；振幅不是用高乘長計算的。',
+    q47: '分散的潛伴應立即執行事先約定好的互尋計劃，不應獨自繼續潛水。',
+    q48: '水肺氣瓶最常用的材料是鋁和鋼，鈦雖然優越但過於昂貴，鮮少商業使用。',
+    q49: '大多數水生動物的攻擊是防禦行為或誤認，潛水員主動接觸才是被攻擊的主因。',
+    q50: '所有答案都不適合：刺的長度不一；被刺不一定是主動惹它；手套不能完全防刺。',
+    q62: 'B 和 C 的說法幾乎相同且都是正確的物理現象；C 被設計為此題「不正確」的選項。',
+    q63: '拖曳疲憊潛水員最常見的方法是用手抓住氣瓶拉動（水箱拉力）或用蛙鞋推動（鰭片推力）。',
+    q64: '先將 BC 背架（氣瓶綁帶）浸水使其延展，可防止氣瓶裝上後因綁帶乾燥收縮而脫落。',
+  };;
 
   function submitExam() {
     const questions = document.querySelectorAll('.question');
@@ -1645,7 +1758,7 @@
       c.textAlign = 'left';
       c.fillStyle = 'rgba(200,230,245,0.5)';
       c.font = '14px sans-serif';
-      c.fillText('總題數  40 題          滿分  100 分          及格  80 分', 36, 112);
+      c.fillText('總題數  50 題          滿分  100 分          及格  80 分', 36, 112);
 
       // Name label
       c.fillStyle = 'rgba(200,230,245,0.45)';
